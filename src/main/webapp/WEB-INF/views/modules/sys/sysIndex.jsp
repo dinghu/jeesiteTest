@@ -74,7 +74,7 @@
             });//</c:if>
             // 绑定菜单单击事件
             $("#menu a.menu").click(function () {
-                alert("menu a.menu click");
+                // alert("menu a.menu click");
                 // 一级菜单焦点
                 $("#menu li.menu").removeClass("active");
                 $(this).parent().addClass("active");
@@ -111,7 +111,7 @@
                     $(menuId + " .accordion-body li:first li:first a:first i").click();
                 } else {
                     // 获取二级菜单数据
-                    alert($(this).attr("data-href"));
+                    // alert($(this).attr("data-href"));
                     $.get($(this).attr("data-href"), function (data) {
                         if (data.indexOf("id=\"loginForm\"") != -1) {
                             alert('未登录或登录超时。请重新登录，谢谢！');
@@ -333,6 +333,7 @@
             $("#right").width("100%");
         }
     }// <c:if test="${tabmode eq '1'}">
+
     function openCloseClickCallBack(b) {
         $.fn.jerichoTab.resize();
     } // </c:if>
