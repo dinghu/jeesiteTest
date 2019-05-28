@@ -32,7 +32,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 /**
  * 硕正Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-11-13
  */
 @Controller

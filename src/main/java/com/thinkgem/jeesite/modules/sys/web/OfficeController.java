@@ -32,7 +32,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 机构Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-5-15
  */
 @Controller

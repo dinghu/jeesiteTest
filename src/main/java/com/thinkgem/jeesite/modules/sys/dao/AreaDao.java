@@ -10,8 +10,8 @@ import com.thinkgem.jeesite.modules.sys.entity.Area;
 /**
  * 区域DAO接口
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @MyBatisDao
 public interface AreaDao extends TreeDao<Area> {

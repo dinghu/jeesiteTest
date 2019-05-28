@@ -15,7 +15,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 /**
  * 标签Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-3-23
  */
 @Controller

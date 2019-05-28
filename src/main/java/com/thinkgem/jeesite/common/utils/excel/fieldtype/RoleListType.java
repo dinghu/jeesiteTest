@@ -15,7 +15,7 @@ import com.thinkgem.jeesite.modules.sys.service.SystemService;
 /**
  * 字段类型转换
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-5-29
  */
 public class RoleListType {

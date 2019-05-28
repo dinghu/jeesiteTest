@@ -33,7 +33,7 @@ import com.thinkgem.jeesite.modules.act.service.ActProcessService;
 /**
  * 流程定义相关Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-11-03
  */
 @Controller

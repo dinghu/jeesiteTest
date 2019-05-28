@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.cms.entity.Guestbook;
 /**
  * 留言DAO接口
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-8-23
  */
 @MyBatisDao

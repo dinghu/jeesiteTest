@@ -19,7 +19,7 @@ import com.thinkgem.jeesite.modules.sys.utils.LogUtils;
 /**
  * 日志拦截器
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2014-8-19
  */
 public class LogInterceptor extends BaseService implements HandlerInterceptor {

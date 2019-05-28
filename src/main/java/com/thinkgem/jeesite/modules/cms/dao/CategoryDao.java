@@ -13,7 +13,7 @@ import com.thinkgem.jeesite.modules.cms.entity.Category;
 /**
  * 栏目DAO接口
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-8-23
  */
 @MyBatisDao

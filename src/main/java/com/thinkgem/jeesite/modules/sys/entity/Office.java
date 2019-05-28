@@ -14,7 +14,7 @@ import com.thinkgem.jeesite.common.persistence.TreeEntity;
 /**
  * 机构Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-05-15
  */
 public class Office extends TreeEntity<Office> {

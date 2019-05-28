@@ -35,7 +35,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 角色Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-12-05
  */
 @Controller

@@ -12,7 +12,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 站点Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-05-15
  */
 public class Site extends DataEntity<Site> {

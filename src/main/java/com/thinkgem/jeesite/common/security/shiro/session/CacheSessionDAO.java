@@ -27,7 +27,7 @@ import com.thinkgem.jeesite.common.web.Servlets;
 /**
  * 系统安全认证实现类
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2014-7-24
  */
 public class CacheSessionDAO extends EnterpriseCacheSessionDAO implements SessionDAO {

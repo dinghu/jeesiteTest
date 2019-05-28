@@ -18,7 +18,7 @@ import com.ckfinder.connector.utils.AccessControlUtil;
 /**
  * CKFinder配置
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2014-06-25
  */
 public class CKFinderConfig extends Configuration {

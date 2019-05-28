@@ -15,7 +15,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 角色Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-12-05
  */
 public class Role extends DataEntity<Role> {

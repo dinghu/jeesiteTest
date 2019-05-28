@@ -15,7 +15,7 @@ import com.thinkgem.jeesite.modules.cms.service.CategoryService;
 /**
  * 内容管理Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-4-21
  */
 @Controller

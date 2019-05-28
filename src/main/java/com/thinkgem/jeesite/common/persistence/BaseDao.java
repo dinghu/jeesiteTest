@@ -6,8 +6,8 @@ package com.thinkgem.jeesite.common.persistence;
 /**
  * DAO支持类实现
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 public interface BaseDao {
 

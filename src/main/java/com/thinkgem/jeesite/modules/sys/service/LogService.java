@@ -15,8 +15,8 @@ import com.thinkgem.jeesite.modules.sys.entity.Log;
 /**
  * 日志Service
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @Service
 @Transactional(readOnly = true)

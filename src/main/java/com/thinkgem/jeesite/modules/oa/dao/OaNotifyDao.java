@@ -10,8 +10,8 @@ import com.thinkgem.jeesite.modules.oa.entity.OaNotify;
 /**
  * 通知通告DAO接口
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @MyBatisDao
 public interface OaNotifyDao extends CrudDao<OaNotify> {

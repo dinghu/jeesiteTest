@@ -25,8 +25,8 @@ import com.thinkgem.jeesite.modules.oa.service.OaNotifyService;
 /**
  * 通知通告Controller
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @Controller
 @RequestMapping(value = "${adminPath}/oa/oaNotify")

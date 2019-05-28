@@ -12,7 +12,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 文章Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-01-15
  */
 public class ArticleData extends DataEntity<ArticleData> {

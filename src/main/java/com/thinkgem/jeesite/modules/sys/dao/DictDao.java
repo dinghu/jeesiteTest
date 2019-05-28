@@ -12,8 +12,8 @@ import com.thinkgem.jeesite.modules.sys.entity.Dict;
 /**
  * 字典DAO接口
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @MyBatisDao
 public interface DictDao extends CrudDao<Dict> {

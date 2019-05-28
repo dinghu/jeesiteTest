@@ -31,7 +31,7 @@ import org.springframework.ui.Model;
 /**
  * 内容管理工具类
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-5-29
  */
 public class CmsUtils {

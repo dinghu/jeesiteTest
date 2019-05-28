@@ -28,7 +28,7 @@ import com.thinkgem.jeesite.modules.sys.entity.User;
 /**
  * 流程工具
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-11-03
  */
 public class ActUtils {

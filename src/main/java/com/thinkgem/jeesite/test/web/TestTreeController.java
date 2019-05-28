@@ -30,7 +30,7 @@ import com.thinkgem.jeesite.test.service.TestTreeService;
 /**
  * 树结构生成Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2015-04-06
  */
 @Controller

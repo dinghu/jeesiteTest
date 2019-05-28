@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.sys.entity.Role;
 /**
  * 角色DAO接口
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-12-05
  */
 @MyBatisDao

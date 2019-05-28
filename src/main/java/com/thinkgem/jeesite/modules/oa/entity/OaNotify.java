@@ -17,13 +17,13 @@ import com.thinkgem.jeesite.modules.sys.entity.User;
 /**
  * 通知通告Entity
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 public class OaNotify extends DataEntity<OaNotify> {
 
     private static final long serialVersionUID = 1L;
-    private String type;        // 类型
+    private String type;          // 类型
     private String title;        // 标题
     private String content;        // 类型
     private String files;        // 附件

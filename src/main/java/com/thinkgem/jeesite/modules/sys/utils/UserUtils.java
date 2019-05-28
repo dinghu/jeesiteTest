@@ -29,7 +29,7 @@ import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principa
 /**
  * 用户工具类
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-12-05
  */
 public class UserUtils {

@@ -17,7 +17,7 @@ import com.thinkgem.jeesite.modules.sys.entity.User;
 /**
  * 留言Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-05-15
  */
 public class Guestbook extends DataEntity<Guestbook> {

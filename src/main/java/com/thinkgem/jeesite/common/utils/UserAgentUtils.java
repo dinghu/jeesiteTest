@@ -12,7 +12,7 @@ import eu.bitwalker.useragentutils.UserAgent;
 /**
  * 用户代理字符串识别工具
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2014-6-13
  */
 public class UserAgentUtils {

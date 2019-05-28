@@ -39,7 +39,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 代码生成工具类
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-11-16
  */
 public class GenUtils {

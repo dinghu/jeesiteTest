@@ -17,8 +17,8 @@ import com.thinkgem.jeesite.modules.sys.utils.DictUtils;
 /**
  * 字典Service
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @Service
 @Transactional(readOnly = true)

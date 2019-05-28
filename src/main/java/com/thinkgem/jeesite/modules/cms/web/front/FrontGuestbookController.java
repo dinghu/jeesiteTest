@@ -27,7 +27,7 @@ import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 /**
  * 留言板Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-3-15
  */
 @Controller

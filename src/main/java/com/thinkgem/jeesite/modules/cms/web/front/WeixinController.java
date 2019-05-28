@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.cms.utils.WiexinSignUtil;
 /**
  * 测试Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2014-02-28
  */
 @Controller

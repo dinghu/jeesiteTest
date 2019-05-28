@@ -13,8 +13,8 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 通知通告记录Entity
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 public class OaNotifyRecord extends DataEntity<OaNotifyRecord> {
 

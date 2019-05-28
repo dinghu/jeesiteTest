@@ -19,7 +19,7 @@ import com.thinkgem.jeesite.modules.sys.entity.Dict;
 /**
  * 字典工具类
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-5-29
  */
 public class DictUtils {

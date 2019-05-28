@@ -30,7 +30,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 文章Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-05-15
  */
 @Service

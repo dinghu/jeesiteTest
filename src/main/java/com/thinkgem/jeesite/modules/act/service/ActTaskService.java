@@ -72,7 +72,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 流程定义相关Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-11-03
  */
 @Service

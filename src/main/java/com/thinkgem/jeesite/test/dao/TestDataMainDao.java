@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.test.entity.TestDataMain;
 /**
  * 主子表生成DAO接口
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2015-04-06
  */
 @MyBatisDao

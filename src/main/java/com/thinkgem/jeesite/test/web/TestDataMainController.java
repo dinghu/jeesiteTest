@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.test.service.TestDataMainService;
 /**
  * 主子表生成Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2015-04-06
  */
 @Controller

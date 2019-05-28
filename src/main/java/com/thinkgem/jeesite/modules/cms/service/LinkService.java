@@ -21,7 +21,7 @@ import com.thinkgem.jeesite.modules.cms.entity.Link;
 /**
  * 链接Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-01-15
  */
 @Service

@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.cms.entity.Comment;
 /**
  * 评论DAO接口
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-8-23
  */
 @MyBatisDao

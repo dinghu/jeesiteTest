@@ -27,7 +27,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 网站搜索Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-5-29
  */
 @Controller

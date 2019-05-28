@@ -17,7 +17,7 @@ import com.thinkgem.jeesite.modules.gen.dao.GenTemplateDao;
 /**
  * 代码模板Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-15
  */
 @Service

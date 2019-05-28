@@ -21,8 +21,8 @@ import com.thinkgem.jeesite.modules.oa.dao.TestAuditDao;
 /**
  * 审批Service
  *
- * @author thinkgem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @Service
 @Transactional(readOnly = true)

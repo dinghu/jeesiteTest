@@ -17,7 +17,7 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 /**
  * 生成方案Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-15
  */
 @XmlRootElement(name = "template")

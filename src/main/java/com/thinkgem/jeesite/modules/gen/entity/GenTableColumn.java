@@ -14,7 +14,7 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 /**
  * 业务表字段Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-15
  */
 public class GenTableColumn extends DataEntity<GenTableColumn> {

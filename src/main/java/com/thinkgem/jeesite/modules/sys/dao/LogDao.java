@@ -10,8 +10,8 @@ import com.thinkgem.jeesite.modules.sys.entity.Log;
 /**
  * 日志DAO接口
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @MyBatisDao
 public interface LogDao extends CrudDao<Log> {

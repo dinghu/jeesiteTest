@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.test.dao.TestTreeDao;
 /**
  * 树结构生成Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2015-04-06
  */
 @Service

@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 主子表生成Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2015-04-06
  */
 public class TestDataChild extends DataEntity<TestDataChild> {

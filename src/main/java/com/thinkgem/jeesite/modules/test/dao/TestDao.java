@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.test.entity.Test;
 /**
  * 测试DAO接口
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-17
  */
 @MyBatisDao

@@ -10,8 +10,8 @@ import com.thinkgem.jeesite.modules.sys.entity.User;
 /**
  * 审批Entity
  *
- * @author thinkgem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 public class TestAudit extends ActEntity<TestAudit> {
 

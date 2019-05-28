@@ -19,8 +19,8 @@ import com.thinkgem.jeesite.modules.oa.dao.OaNotifyRecordDao;
 /**
  * 通知通告Service
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @Service
 @Transactional(readOnly = true)

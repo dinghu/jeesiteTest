@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 生成方案Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-15
  */
 public class GenScheme extends DataEntity<GenScheme> {

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Activiti User Entity Service Factory
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-11-03
  */
 public class ActUserEntityServiceFactory implements SessionFactory {

@@ -10,8 +10,8 @@ import com.thinkgem.jeesite.modules.oa.entity.TestAudit;
 /**
  * 审批DAO接口
  *
- * @author thinkgem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @MyBatisDao
 public interface TestAuditDao extends CrudDao<TestAudit> {

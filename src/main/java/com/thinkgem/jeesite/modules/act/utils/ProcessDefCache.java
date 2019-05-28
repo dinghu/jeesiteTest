@@ -17,7 +17,7 @@ import com.thinkgem.jeesite.common.utils.SpringContextHolder;
 /**
  * 流程定义缓存
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-12-05
  */
 public class ProcessDefCache {

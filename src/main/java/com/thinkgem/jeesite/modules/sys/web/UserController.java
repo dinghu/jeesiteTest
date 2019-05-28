@@ -41,7 +41,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 用户Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-8-29
  */
 @Controller

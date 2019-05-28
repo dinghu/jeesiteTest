@@ -20,7 +20,7 @@ import com.thinkgem.jeesite.modules.sys.service.LogService;
 /**
  * 日志Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-6-2
  */
 @Controller

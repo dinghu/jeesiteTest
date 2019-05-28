@@ -28,7 +28,7 @@ import com.thinkgem.jeesite.modules.sys.entity.User;
 /**
  * 日志工具类
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2014-11-7
  */
 public class LogUtils {

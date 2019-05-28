@@ -14,7 +14,7 @@ import com.thinkgem.jeesite.modules.cms.entity.Guestbook;
 /**
  * 留言Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-01-15
  */
 @Service

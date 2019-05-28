@@ -20,7 +20,7 @@ import com.thinkgem.jeesite.common.utils.CookieUtils;
  * 分页类
  *
  * @param <T>
- * @author ThinkGem
+ * @author Hale
  * @version 2013-7-2
  */
 public class Page<T> {

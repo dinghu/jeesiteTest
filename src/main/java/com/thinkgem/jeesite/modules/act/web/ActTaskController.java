@@ -30,7 +30,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 流程个人任务相关Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-11-03
  */
 @Controller

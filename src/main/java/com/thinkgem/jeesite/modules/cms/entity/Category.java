@@ -17,7 +17,7 @@ import com.thinkgem.jeesite.modules.sys.entity.Office;
 /**
  * 栏目Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-05-15
  */
 public class Category extends TreeEntity<Category> {

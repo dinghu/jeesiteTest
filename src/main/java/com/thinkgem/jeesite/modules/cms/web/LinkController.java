@@ -31,7 +31,7 @@ import com.thinkgem.jeesite.modules.cms.service.LinkService;
 /**
  * 链接Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-3-23
  */
 @Controller

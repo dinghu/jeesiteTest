@@ -19,7 +19,7 @@ import com.thinkgem.jeesite.modules.sys.entity.Office;
 /**
  * 测试Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-17
  */
 @SupTreeList(

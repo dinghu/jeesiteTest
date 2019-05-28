@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * 模型部署或更新到流程定义
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2016年8月2日
  */
 public class ModelDeployProcessDefinitionCmd implements Command<java.lang.Void> {

@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 /**
  * Excel注解定义
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-03-10
  */
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.TYPE})

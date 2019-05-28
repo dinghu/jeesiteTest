@@ -30,7 +30,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 菜单Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-3-23
  */
 @Controller

@@ -30,7 +30,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 区域Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-5-15
  */
 @Controller

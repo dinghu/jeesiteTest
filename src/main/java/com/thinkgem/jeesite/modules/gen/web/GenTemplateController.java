@@ -26,7 +26,7 @@ import com.thinkgem.jeesite.modules.gen.service.GenTemplateService;
 /**
  * 代码模板Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-15
  */
 @Controller

@@ -24,7 +24,7 @@ import com.thinkgem.jeesite.common.utils.excel.fieldtype.RoleListType;
 /**
  * 用户Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-12-05
  */
 public class User extends DataEntity<User> {

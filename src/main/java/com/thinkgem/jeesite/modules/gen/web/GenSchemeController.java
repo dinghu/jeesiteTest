@@ -28,7 +28,7 @@ import com.thinkgem.jeesite.modules.gen.util.GenUtils;
 /**
  * 生成方案Controller
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-15
  */
 @Controller

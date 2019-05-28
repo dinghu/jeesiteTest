@@ -24,7 +24,7 @@ import com.thinkgem.jeesite.modules.sys.service.SystemService;
 /**
  * Activiti Group Entity Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-12-05
  */
 @Service

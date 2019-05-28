@@ -22,8 +22,8 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * Entity支持类
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 @SupTreeList
 public abstract class BaseEntity<T> implements Serializable {

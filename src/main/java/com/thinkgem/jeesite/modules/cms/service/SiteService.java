@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 /**
  * 站点Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-01-15
  */
 @Service

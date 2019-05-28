@@ -14,7 +14,7 @@ import com.thinkgem.jeesite.common.persistence.TreeEntity;
 /**
  * 树结构生成Entity
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2015-04-06
  */
 public class TestTree extends TreeEntity<TestTree> {

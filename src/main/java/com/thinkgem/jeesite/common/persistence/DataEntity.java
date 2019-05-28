@@ -17,8 +17,8 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 /**
  * 数据Entity类
  *
- * @author ThinkGem
- * @version 2014-05-16
+ * @author Hale
+ *
  */
 public abstract class DataEntity<T> extends BaseEntity<T> {
 

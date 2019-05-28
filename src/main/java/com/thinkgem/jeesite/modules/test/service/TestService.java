@@ -13,7 +13,7 @@ import com.thinkgem.jeesite.modules.test.dao.TestDao;
 /**
  * 测试Service
  *
- * @author ThinkGem
+ * @author Hale
  * @version 2013-10-17
  */
 @Service
