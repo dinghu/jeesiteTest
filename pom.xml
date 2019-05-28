@@ -642,6 +642,17 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+
             <!-- JSP 预编译插件  jspweb.xml
             <plugin>
                 <groupId>org.jasig.mojo.jspc</groupId>
@@ -912,6 +923,9 @@
             </dependencies>
             <build>
                 <plugins>
+
+
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>
