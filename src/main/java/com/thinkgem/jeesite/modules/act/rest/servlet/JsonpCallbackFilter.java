@@ -19,46 +19,48 @@ import org.slf4j.LoggerFactory;
 
 public class JsonpCallbackFilter implements Filter {
 
-	private static Logger log = LoggerFactory.getLogger(JsonpCallbackFilter.class);
+    private static Logger log = LoggerFactory.getLogger(JsonpCallbackFilter.class);
 
-	public void init(FilterConfig fConfig) throws ServletException {}
+    public void init(FilterConfig fConfig) throws ServletException {
+    }
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-		@SuppressWarnings("unchecked")
-		Map<String, String[]> parms = httpRequest.getParameterMap();
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-		if (parms.containsKey("callback")) {
-			if (log.isDebugEnabled())
-				log.debug("Wrapping response with JSONP callback '" + parms.get("callback")[0] + "'");
+        @SuppressWarnings("unchecked")
+        Map<String, String[]> parms = httpRequest.getParameterMap();
 
-			OutputStream out = httpResponse.getOutputStream();
+        if (parms.containsKey("callback")) {
+            if (log.isDebugEnabled())
+                log.debug("Wrapping response with JSONP callback '" + parms.get("callback")[0] + "'");
 
-			GenericResponseWrapper wrapper = new GenericResponseWrapper(httpResponse);
+            OutputStream out = httpResponse.getOutputStream();
 
-			chain.doFilter(request, wrapper);
+            GenericResponseWrapper wrapper = new GenericResponseWrapper(httpResponse);
 
-			//handles the content-size truncation
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			outputStream.write(new String(parms.get("callback")[0] + "(").getBytes());
-			outputStream.write(wrapper.getData());
-			outputStream.write(new String(");").getBytes());
-			byte jsonpResponse[] = outputStream.toByteArray();
+            chain.doFilter(request, wrapper);
 
-			wrapper.setContentType("text/javascript;charset=UTF-8");
-			wrapper.setContentLength(jsonpResponse.length);
+            //handles the content-size truncation
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            outputStream.write(new String(parms.get("callback")[0] + "(").getBytes());
+            outputStream.write(wrapper.getData());
+            outputStream.write(new String(");").getBytes());
+            byte jsonpResponse[] = outputStream.toByteArray();
 
-			out.write(jsonpResponse);
+            wrapper.setContentType("text/javascript;charset=UTF-8");
+            wrapper.setContentLength(jsonpResponse.length);
 
-			out.close();
+            out.write(jsonpResponse);
 
-		} else {
-			chain.doFilter(request, response);
-		}
-	}
+            out.close();
 
-	public void destroy() {}
+        } else {
+            chain.doFilter(request, response);
+        }
+    }
+
+    public void destroy() {
+    }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.oa.dao.TestAuditDao">
-    
+
     <sql id="testAuditColumns">
 		a.id, 
 		a.post, 
@@ -31,53 +31,53 @@
 		a.remarks, 
 		a.del_flag
 	</sql>
-	
-	<sql id="testAuditJoins">
+
+    <sql id="testAuditJoins">
 		JOIN sys_user u ON u.id=a.user_id
 		JOIN sys_office o ON o.id=a.office_id
     </sql>
-    
+
     <select id="get" resultType="TestAudit">
-		SELECT 
-			<include refid="testAuditColumns"/>
-		FROM oa_test_audit a
-		<include refid="testAuditJoins"/>
-		WHERE a.id = #{id}
-	</select>
-	
+        SELECT
+        <include refid="testAuditColumns"/>
+        FROM oa_test_audit a
+        <include refid="testAuditJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
     <select id="getByProcInsId" resultType="TestAudit">
-		SELECT 
-			<include refid="testAuditColumns"/>
-		FROM oa_test_audit a
-		<include refid="testAuditJoins"/>
-		WHERE a.proc_ins_id = #{procInsId}
-	</select>
-	
-	<select id="findList" resultType="TestAudit">
-		SELECT 
-			<include refid="testAuditColumns"/>
-		FROM oa_test_audit a
-		<include refid="testAuditJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
-		<if test="user != null and user.id != null and user.id != ''">
-			AND u.id LIKE 
-					<if test="dbName == 'oracle'">'%'||#{user.id}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{user.id}+'%'</if>
-					<if test="dbName == 'mysql'">CONCAT('%', #{user.id}, '%')</if>
-		</if>
-		ORDER BY a.update_date DESC
-	</select>
-	
-	<select id="findAllList" resultType="TestAudit">
-		SELECT 
-			<include refid="testAuditColumns"/>
-		FROM oa_test_audit a
-		<include refid="testAuditJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
-		ORDER BY a.update_date DESC
-	</select>
-	
-	<insert id="insert">
+        SELECT
+        <include refid="testAuditColumns"/>
+        FROM oa_test_audit a
+        <include refid="testAuditJoins"/>
+        WHERE a.proc_ins_id = #{procInsId}
+    </select>
+
+    <select id="findList" resultType="TestAudit">
+        SELECT
+        <include refid="testAuditColumns"/>
+        FROM oa_test_audit a
+        <include refid="testAuditJoins"/>
+        WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+        <if test="user != null and user.id != null and user.id != ''">
+            AND u.id LIKE
+            <if test="dbName == 'oracle'">'%'||#{user.id}||'%'</if>
+            <if test="dbName == 'mssql'">'%'+#{user.id}+'%'</if>
+            <if test="dbName == 'mysql'">CONCAT('%', #{user.id}, '%')</if>
+        </if>
+        ORDER BY a.update_date DESC
+    </select>
+
+    <select id="findAllList" resultType="TestAudit">
+        SELECT
+        <include refid="testAuditColumns"/>
+        FROM oa_test_audit a
+        <include refid="testAuditJoins"/>
+        WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+        ORDER BY a.update_date DESC
+    </select>
+
+    <insert id="insert">
 		INSERT INTO oa_test_audit(
 			id, 
 			user_id, 
@@ -124,8 +124,8 @@
 			#{delFlag}
 		)
 	</insert>
-	
-	<update id="update">
+
+    <update id="update">
 		UPDATE oa_test_audit SET 
 			user_id = #{user.id}, 
 			office_id = #{office.id}, 
@@ -146,43 +146,43 @@
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="updateInsId">
+
+    <update id="updateInsId">
 		UPDATE oa_test_audit SET 
 			proc_ins_id = #{procInsId},
 			update_by = #{updateBy.id}, 
 			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="updateHrText">
+
+    <update id="updateHrText">
 		UPDATE oa_test_audit SET 
 			hr_text = #{hrText},
 			update_by = #{updateBy.id}, 
 			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="updateLeadText">
+
+    <update id="updateLeadText">
 		UPDATE oa_test_audit SET 
 			lead_text = #{leadText},
 			update_by = #{updateBy.id}, 
 			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="updateMainLeadText">
+
+    <update id="updateMainLeadText">
 		UPDATE oa_test_audit SET 
 			main_lead_text = #{mainLeadText},
 			update_by = #{updateBy.id}, 
 			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="delete">
+
+    <update id="delete">
 		UPDATE oa_test_audit SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
 </mapper>

@@ -33,11 +33,12 @@ import java.util.regex.Pattern;
 
 /**
  * SQL工具类
+ *
  * @author poplar.yfyang / thinkgem
  * @version 2013-8-28
  */
 public class SQLHelper {
-	
+
     /**
      * 对SQL参数(?)设值,参考org.apache.ibatis.executor.parameter.DefaultParameterHandler
      *
@@ -77,7 +78,7 @@ public class SQLHelper {
                         value = metaObject == null ? null : metaObject.getValue(propertyName);
                     }
                     @SuppressWarnings("rawtypes")
-					TypeHandler typeHandler = parameterMapping.getTypeHandler();
+                    TypeHandler typeHandler = parameterMapping.getTypeHandler();
                     if (typeHandler == null) {
                         throw new ExecutorException("There was no TypeHandler found for parameter " + propertyName + " of statement " + mappedStatement.getId());
                     }
@@ -90,6 +91,7 @@ public class SQLHelper {
 
     /**
      * 查询总纪录数
+     *
      * @param sql             SQL语句
      * @param connection      数据库连接
      * @param mappedStatement mapped
@@ -99,35 +101,35 @@ public class SQLHelper {
      * @throws SQLException sql查询错误
      */
     public static int getCount(final String sql, final Connection connection,
-    							final MappedStatement mappedStatement, final Object parameterObject,
-    							final BoundSql boundSql, Log log) throws SQLException {
-    	String dbName = Global.getConfig("jdbc.type");
-		final String countSql;
-		if("oracle".equals(dbName)){
-			countSql = "select count(1) from (" + sql + ") tmp_count";
-		}else{
-			countSql = "select count(1) from (" + removeOrders(sql) + ") tmp_count";
+                               final MappedStatement mappedStatement, final Object parameterObject,
+                               final BoundSql boundSql, Log log) throws SQLException {
+        String dbName = Global.getConfig("jdbc.type");
+        final String countSql;
+        if ("oracle".equals(dbName)) {
+            countSql = "select count(1) from (" + sql + ") tmp_count";
+        } else {
+            countSql = "select count(1) from (" + removeOrders(sql) + ") tmp_count";
 //	        countSql = "select count(1) " + removeSelect(removeOrders(sql));
-		}
+        }
         Connection conn = connection;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-        	if (log.isDebugEnabled()) {
-                log.debug("COUNT SQL: " + StringUtils.replaceEach(countSql, new String[]{"\n","\t"}, new String[]{" "," "}));
+            if (log.isDebugEnabled()) {
+                log.debug("COUNT SQL: " + StringUtils.replaceEach(countSql, new String[]{"\n", "\t"}, new String[]{" ", " "}));
             }
-        	if (conn == null){
-        		conn = mappedStatement.getConfiguration().getEnvironment().getDataSource().getConnection();
+            if (conn == null) {
+                conn = mappedStatement.getConfiguration().getEnvironment().getDataSource().getConnection();
             }
-        	ps = conn.prepareStatement(countSql);
+            ps = conn.prepareStatement(countSql);
             BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(), countSql,
                     boundSql.getParameterMappings(), parameterObject);
             //解决MyBatis 分页foreach 参数失效 start
-			if (Reflections.getFieldValue(boundSql, "metaParameters") != null) {
-				MetaObject mo = (MetaObject) Reflections.getFieldValue(boundSql, "metaParameters");
-				Reflections.setFieldValue(countBS, "metaParameters", mo);
-			}
-			//解决MyBatis 分页foreach 参数失效 end 
+            if (Reflections.getFieldValue(boundSql, "metaParameters") != null) {
+                MetaObject mo = (MetaObject) Reflections.getFieldValue(boundSql, "metaParameters");
+                Reflections.setFieldValue(countBS, "metaParameters", mo);
+            }
+            //解决MyBatis 分页foreach 参数失效 end
             SQLHelper.setParameters(ps, mappedStatement, countBS, parameterObject);
             rs = ps.executeQuery();
             int count = 0;
@@ -140,10 +142,10 @@ public class SQLHelper {
                 rs.close();
             }
             if (ps != null) {
-            	ps.close();
+                ps.close();
             }
             if (conn != null) {
-            	conn.close();
+                conn.close();
             }
         }
     }
@@ -151,6 +153,7 @@ public class SQLHelper {
 
     /**
      * 根据数据库方言，生成特定的分页sql
+     *
      * @param sql     Mapper中的Sql语句
      * @param page    分页对象
      * @param dialect 方言类型
@@ -163,33 +166,35 @@ public class SQLHelper {
             return sql;
         }
     }
-    
-    /** 
-     * 去除qlString的select子句。 
-     * @param hql 
-     * @return 
-     */  
+
+    /**
+     * 去除qlString的select子句。
+     *
+     * @param hql
+     * @return
+     */
     @SuppressWarnings("unused")
-	private static String removeSelect(String qlString){  
-        int beginPos = qlString.toLowerCase().indexOf("from");  
-        return qlString.substring(beginPos);  
-    }  
-      
-    /** 
-     * 去除hql的orderBy子句。 
-     * @param hql 
-     * @return 
-     */  
+    private static String removeSelect(String qlString) {
+        int beginPos = qlString.toLowerCase().indexOf("from");
+        return qlString.substring(beginPos);
+    }
+
+    /**
+     * 去除hql的orderBy子句。
+     *
+     * @param hql
+     * @return
+     */
     @SuppressWarnings("unused")
-	private static String removeOrders(String qlString) {  
-        Pattern p = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE);  
-        Matcher m = p.matcher(qlString);  
-        StringBuffer sb = new StringBuffer();  
-        while (m.find()) {  
-            m.appendReplacement(sb, "");  
+    private static String removeOrders(String qlString) {
+        Pattern p = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(qlString);
+        StringBuffer sb = new StringBuffer();
+        while (m.find()) {
+            m.appendReplacement(sb, "");
         }
         m.appendTail(sb);
-        return sb.toString();  
+        return sb.toString();
     }
-    
+
 }

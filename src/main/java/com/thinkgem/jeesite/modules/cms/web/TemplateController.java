@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 站点Controller
+ *
  * @author SongLai
  * @version 2013-3-23
  */
@@ -20,34 +21,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TemplateController extends BaseController {
 
     @Autowired
-   	private FileTplService fileTplService;
+    private FileTplService fileTplService;
     @Autowired
-   	private SiteService siteService;
+    private SiteService siteService;
 
     @RequiresPermissions("cms:template:edit")
-   	@RequestMapping(value = "")
-   	public String index() {
-   		return "modules/cms/tplIndex";
-   	}
+    @RequestMapping(value = "")
+    public String index() {
+        return "modules/cms/tplIndex";
+    }
 
     @RequiresPermissions("cms:template:edit")
-   	@RequestMapping(value = "tree")
-   	public String tree(Model model) {
+    @RequestMapping(value = "tree")
+    public String tree(Model model) {
         Site site = siteService.get(Site.getCurrentSiteId());
-   		model.addAttribute("templateList", fileTplService.getListForEdit(site.getSolutionPath()));
-   		return "modules/cms/tplTree";
-   	}
+        model.addAttribute("templateList", fileTplService.getListForEdit(site.getSolutionPath()));
+        return "modules/cms/tplTree";
+    }
 
     @RequiresPermissions("cms:template:edit")
-   	@RequestMapping(value = "form")
-   	public String form(String name, Model model) {
+    @RequestMapping(value = "form")
+    public String form(String name, Model model) {
         model.addAttribute("template", fileTplService.getFileTpl(name));
-   		return "modules/cms/tplForm";
-   	}
+        return "modules/cms/tplForm";
+    }
 
     @RequiresPermissions("cms:template:edit")
-   	@RequestMapping(value = "help")
-   	public String help() {
-   		return "modules/cms/tplHelp";
-   	}
+    @RequestMapping(value = "help")
+    public String help() {
+        return "modules/cms/tplHelp";
+    }
 }

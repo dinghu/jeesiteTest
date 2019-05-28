@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>viewList</name>
-	<filePath>src/main/webapp/WEB-INF/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
-	<fileName>${className}List.jsp</fileName>
-	<content><![CDATA[
+    <name>viewList</name>
+    <filePath>src/main/webapp/WEB-INF/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
+    <fileName>${className}List.jsp</fileName>
+    <content><![CDATA[
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
@@ -116,5 +116,5 @@
 	<div class="pagination">${r"${page}"}</div>
 </body>
 </html>]]>
-	</content>
+    </content>
 </template>

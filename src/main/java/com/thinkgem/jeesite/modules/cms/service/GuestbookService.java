@@ -13,6 +13,7 @@ import com.thinkgem.jeesite.modules.cms.entity.Guestbook;
 
 /**
  * 留言Service
+ *
  * @author ThinkGem
  * @version 2013-01-15
  */
@@ -20,11 +21,11 @@ import com.thinkgem.jeesite.modules.cms.entity.Guestbook;
 @Transactional(readOnly = true)
 public class GuestbookService extends CrudService<GuestbookDao, Guestbook> {
 
-	public Guestbook get(String id) {
-		return dao.get(id);
-	}
-	
-	public Page<Guestbook> findPage(Page<Guestbook> page, Guestbook guestbook) {
+    public Guestbook get(String id) {
+        return dao.get(id);
+    }
+
+    public Page<Guestbook> findPage(Page<Guestbook> page, Guestbook guestbook) {
 //		DetachedCriteria dc = dao.createDetachedCriteria();
 //		if (StringUtils.isNotEmpty(guestbook.getType())){
 //			dc.add(Restrictions.eq("type", guestbook.getType()));
@@ -35,33 +36,33 @@ public class GuestbookService extends CrudService<GuestbookDao, Guestbook> {
 //		dc.add(Restrictions.eq(Guestbook.FIELD_DEL_FLAG, guestbook.getDelFlag()));
 //		dc.addOrder(Order.desc("createDate"));
 //		return dao.find(page, dc);
-		guestbook.getSqlMap().put("dsf", dataScopeFilter(guestbook.getCurrentUser(), "o", "u"));
-		
-		guestbook.setPage(page);
-		page.setList(dao.findList(guestbook));
-		return page;
-	}
-	
-	@Transactional(readOnly = false)
-	public void delete(Guestbook guestbook, Boolean isRe) {
-		//dao.updateDelFlag(id, isRe!=null&&isRe?Guestbook.DEL_FLAG_AUDIT:Guestbook.DEL_FLAG_DELETE);
-		dao.delete(guestbook);
-	}
-	
-	/**
-	 * 更新索引
-	 */
-	public void createIndex(){
-		//dao.createIndex();
-	}
-	
-	/**
-	 * 全文检索
-	 */
-	//FIXME 暂不提供
-	public Page<Guestbook> search(Page<Guestbook> page, String q, String beginDate, String endDate){
-		
-		// 设置查询条件
+        guestbook.getSqlMap().put("dsf", dataScopeFilter(guestbook.getCurrentUser(), "o", "u"));
+
+        guestbook.setPage(page);
+        page.setList(dao.findList(guestbook));
+        return page;
+    }
+
+    @Transactional(readOnly = false)
+    public void delete(Guestbook guestbook, Boolean isRe) {
+        //dao.updateDelFlag(id, isRe!=null&&isRe?Guestbook.DEL_FLAG_AUDIT:Guestbook.DEL_FLAG_DELETE);
+        dao.delete(guestbook);
+    }
+
+    /**
+     * 更新索引
+     */
+    public void createIndex() {
+        //dao.createIndex();
+    }
+
+    /**
+     * 全文检索
+     */
+    //FIXME 暂不提供
+    public Page<Guestbook> search(Page<Guestbook> page, String q, String beginDate, String endDate) {
+
+        // 设置查询条件
 //		BooleanQuery query = dao.getFullTextQuery(q, "name","content","reContent");
 //		
 //		// 设置过滤条件
@@ -91,8 +92,8 @@ public class GuestbookService extends CrudService<GuestbookDao, Guestbook> {
 //		dao.keywordsHighlight(query, page.getList(), 30, "name");
 //		dao.keywordsHighlight(query, page.getList(), 1300, "content");
 //		dao.keywordsHighlight(query, page.getList(), 1300, "reContent");
-		
-		return page;
-	}
-	
+
+        return page;
+    }
+
 }

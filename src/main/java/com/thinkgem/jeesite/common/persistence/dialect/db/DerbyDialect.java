@@ -14,7 +14,7 @@ public class DerbyDialect implements Dialect {
     @Override
     public boolean supportsLimit() {
         return false;
-	}
+    }
 
     @Override
     public String getLimitString(String sql, int offset, int limit) {
@@ -37,8 +37,8 @@ public class DerbyDialect implements Dialect {
      * @param limitPlaceholder  分页纪录条数占位符号
      * @return 包含占位符的分页sql
      */
-	public String getLimitString(String sql, int offset,String offsetPlaceholder, int limit, String limitPlaceholder) {
-		throw new UnsupportedOperationException( "paged queries not supported" );
-	}
+    public String getLimitString(String sql, int offset, String offsetPlaceholder, int limit, String limitPlaceholder) {
+        throw new UnsupportedOperationException("paged queries not supported");
+    }
 
 }

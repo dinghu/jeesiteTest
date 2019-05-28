@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>service</name>
-	<filePath>src/main/java/${packageName}/${moduleName}/service/${subModuleName}</filePath>
-	<fileName>${ClassName}Service.java</fileName>
-	<content><![CDATA[
+    <name>service</name>
+    <filePath>src/main/java/${packageName}/${moduleName}/service/${subModuleName}</filePath>
+    <fileName>${ClassName}Service.java</fileName>
+    <content><![CDATA[
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
@@ -51,5 +51,5 @@ public class ${ClassName}Service extends CrudService<${ClassName}Dao, ${ClassNam
 	}
 	
 }]]>
-	</content>
+    </content>
 </template>

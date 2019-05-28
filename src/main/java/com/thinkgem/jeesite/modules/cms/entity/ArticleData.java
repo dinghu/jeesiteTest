@@ -11,80 +11,81 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
  * 文章Entity
+ *
  * @author ThinkGem
  * @version 2013-01-15
  */
 public class ArticleData extends DataEntity<ArticleData> {
 
-	private static final long serialVersionUID = 1L;
-	private String id;		// 编号
-	private String content;	// 内容
-	private String copyfrom;// 来源
-	private String relation;// 相关文章
-	private String allowComment;// 是否允许评论
+    private static final long serialVersionUID = 1L;
+    private String id;        // 编号
+    private String content;    // 内容
+    private String copyfrom;// 来源
+    private String relation;// 相关文章
+    private String allowComment;// 是否允许评论
 
-	private Article article;
-	
-	public ArticleData() {
-		super();
-		this.allowComment = Global.YES;
-	}
-	
-	public ArticleData(String id){
-		this();
-		this.id = id;
-	}
+    private Article article;
 
-	public String getId() {
-		return id;
-	}
+    public ArticleData() {
+        super();
+        this.allowComment = Global.YES;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public ArticleData(String id) {
+        this();
+        this.id = id;
+    }
 
-	@NotBlank
-	public String getContent() {
-		return content;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@Length(min=0, max=255)
-	public String getCopyfrom() {
-		return copyfrom;
-	}
+    @NotBlank
+    public String getContent() {
+        return content;
+    }
 
-	public void setCopyfrom(String copyfrom) {
-		this.copyfrom = copyfrom;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	@Length(min=0, max=255)
-	public String getRelation() {
-		return relation;
-	}
+    @Length(min = 0, max = 255)
+    public String getCopyfrom() {
+        return copyfrom;
+    }
 
-	public void setRelation(String relation) {
-		this.relation = relation;
-	}
+    public void setCopyfrom(String copyfrom) {
+        this.copyfrom = copyfrom;
+    }
 
-	@Length(min=1, max=1)
-	public String getAllowComment() {
-		return allowComment;
-	}
+    @Length(min = 0, max = 255)
+    public String getRelation() {
+        return relation;
+    }
 
-	public void setAllowComment(String allowComment) {
-		this.allowComment = allowComment;
-	}
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
 
-	public Article getArticle() {
-		return article;
-	}
+    @Length(min = 1, max = 1)
+    public String getAllowComment() {
+        return allowComment;
+    }
 
-	public void setArticle(Article article) {
-		this.article = article;
-	}
+    public void setAllowComment(String allowComment) {
+        this.allowComment = allowComment;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
 
 }

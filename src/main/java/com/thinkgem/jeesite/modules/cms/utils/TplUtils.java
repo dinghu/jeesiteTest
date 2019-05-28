@@ -40,7 +40,7 @@ public class TplUtils {
                     throw new RuntimeException("name not contain '/' or '.':" + t);
                 }
                 t = t.substring(start + 1, end);
-                if(t.contains(prefix)){
+                if (t.contains(prefix)) {
                     result.add(t);
                 }
             }

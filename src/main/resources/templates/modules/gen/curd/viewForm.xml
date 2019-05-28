@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>viewForm</name>
-	<filePath>src/main/webapp/WEB-INF/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
-	<fileName>${className}Form.jsp</fileName>
-	<content><![CDATA[
+    <name>viewForm</name>
+    <filePath>src/main/webapp/WEB-INF/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
+    <fileName>${className}Form.jsp</fileName>
+    <content><![CDATA[
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
@@ -88,5 +88,5 @@
 	</form:form>
 </body>
 </html>]]>
-	</content>
+    </content>
 </template>

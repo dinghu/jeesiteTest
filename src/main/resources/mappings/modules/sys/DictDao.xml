@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.DictDao">
-    
-	<select id="get" resultType="Dict">
+
+    <select id="get" resultType="Dict">
 		SELECT 
 			* 
 		FROM sys_dict 
 		WHERE id = #{id}
 	</select>
-	
-	<select id="findList" resultType="Dict">
+
+    <select id="findList" resultType="Dict">
+        SELECT
+        *
+        FROM sys_dict
+        WHERE del_flag = #{DEL_FLAG_NORMAL}
+        <if test="type != null and type != ''">
+            AND type = #{type}
+        </if>
+        <if test="description != null and description != ''">
+            AND description LIKE
+            <if test="dbName == 'oracle'">'%'||#{description}||'%'</if>
+            <if test="dbName == 'mssql'">'%'+#{description}+'%'</if>
+            <if test="dbName == 'mysql'">CONCAT('%', #{description}, '%')</if>
+        </if>
+        ORDER BY type, sort, update_date DESC
+    </select>
+
+    <select id="findAllList" resultType="Dict">
 		SELECT 
 			* 
 		FROM sys_dict 
 		WHERE del_flag = #{DEL_FLAG_NORMAL} 
-		<if test="type != null and type != ''">
-			AND type = #{type}
-		</if>
-		<if test="description != null and description != ''">
-			AND description LIKE 
-					<if test="dbName == 'oracle'">'%'||#{description}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{description}+'%'</if>
-					<if test="dbName == 'mysql'">CONCAT('%', #{description}, '%')</if>
-		</if>
 		ORDER BY type, sort, update_date DESC
 	</select>
-	
-	<select id="findAllList" resultType="Dict">
-		SELECT 
-			* 
-		FROM sys_dict 
-		WHERE del_flag = #{DEL_FLAG_NORMAL} 
-		ORDER BY type, sort, update_date DESC
-	</select>
-	
-	<select id="findTypeList" resultType="string">
+
+    <select id="findTypeList" resultType="string">
 		SELECT 
 			type 
 		FROM sys_dict 
@@ -42,8 +42,8 @@
 		GROUP BY type
 		ORDER BY type
 	</select>
-	
-	<insert id="insert">
+
+    <insert id="insert">
 		INSERT INTO sys_dict(
 			id, 
 			value, 
@@ -72,8 +72,8 @@
 			#{delFlag}
 		)
 	</insert>
-	
-	<update id="update">
+
+    <update id="update">
 		UPDATE sys_dict SET 
 			value = #{value}, 
 			label = #{label}, 
@@ -85,11 +85,11 @@
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="delete">
+
+    <update id="delete">
 		UPDATE sys_dict SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
 </mapper>

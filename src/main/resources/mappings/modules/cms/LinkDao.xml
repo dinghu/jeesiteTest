@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.cms.dao.LinkDao">
-    
-	<sql id="cmsLinkColumns">
+
+    <sql id="cmsLinkColumns">
 		a.id AS "id",
 		a.category_id AS "category.id",
 		a.title AS "title",
@@ -20,63 +20,63 @@
 		c.name AS "category.name",
 		u.name AS "user.name"
 	</sql>
-	
-	<sql id="cmsLinkJoins">
+
+    <sql id="cmsLinkJoins">
 		JOIN cms_category c ON c.id = a.category_id
 		JOIN sys_user u ON u.id = a.create_by
 	</sql>
-    
-	<select id="get" resultType="Link">
-		SELECT 
-			<include refid="cmsLinkColumns"/>
-		FROM cms_link a
-		<include refid="cmsLinkJoins"/>
-		WHERE a.id = #{id}
-	</select>
-	
-	<select id="findList" resultType="Link">
-		SELECT 
-			<include refid="cmsLinkColumns"/>
-		FROM cms_link a
-		<include refid="cmsLinkJoins"/>
-		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="title != null and title != ''">
-				AND a.title LIKE 
-					<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
-					<if test="dbName == 'mysql'">CONCAT('%', #{title}, '%')</if>
-			</if>
-		</where>
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-				ORDER BY a.update_date DESC
-			</otherwise>
-		</choose>
-	</select>
-	
-	<select id="findAllList" resultType="Link">
-		SELECT 
-			<include refid="cmsLinkColumns"/>
-		FROM cms_link a
-		<include refid="cmsLinkJoins"/>
-		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
-		</where>		
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-				ORDER BY a.update_date DESC
-			</otherwise>
-		</choose>
-	</select>
-	
-	<insert id="insert">
+
+    <select id="get" resultType="Link">
+        SELECT
+        <include refid="cmsLinkColumns"/>
+        FROM cms_link a
+        <include refid="cmsLinkJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="Link">
+        SELECT
+        <include refid="cmsLinkColumns"/>
+        FROM cms_link a
+        <include refid="cmsLinkJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="title != null and title != ''">
+                AND a.title LIKE
+                <if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
+                <if test="dbName == 'mysql'">CONCAT('%', #{title}, '%')</if>
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findAllList" resultType="Link">
+        SELECT
+        <include refid="cmsLinkColumns"/>
+        FROM cms_link a
+        <include refid="cmsLinkJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <insert id="insert">
 		INSERT INTO cms_link(
 			id,
 			category_id,
@@ -109,8 +109,8 @@
 			#{delFlag}
 		)
 	</insert>
-	
-	<update id="update">
+
+    <update id="update">
 		UPDATE cms_link SET 	
 			category_id = #{category.id},
 			title = #{title},
@@ -125,28 +125,28 @@
 			del_flag = #{delFlag}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="delete">
+
+    <update id="delete">
 		UPDATE cms_link SET 
 			del_flag = #{delFlag}
 		WHERE id = #{id}
 	</update>
-	
-	<select id="findByIdIn" resultType="Link">
-		SELECT 
-			<include refid="cmsLinkColumns"/>
-		from cms_link a where 
-		<where>
-			id in (${id});
-		</where>		
-	</select>
 
-	<update id="updateExpiredWeight">
-		update cms_link SET
-			 weight=0
-		WHERE weight &gt; 0 AND weight_date &lt; 
-			<if test="dbName == 'oracle'">sysdate</if>
-			<if test="dbName == 'mssql'">FLOOR(CONVERT(FLOAT,GETDATE()))</if>
-			<if test="dbName == 'mysql'">CURDATE()</if>
-	</update>
+    <select id="findByIdIn" resultType="Link">
+        SELECT
+        <include refid="cmsLinkColumns"/>
+        from cms_link a where
+        <where>
+            id in (${id});
+        </where>
+    </select>
+
+    <update id="updateExpiredWeight">
+        update cms_link SET
+        weight=0
+        WHERE weight &gt; 0 AND weight_date &lt;
+        <if test="dbName == 'oracle'">sysdate</if>
+        <if test="dbName == 'mssql'">FLOOR(CONVERT(FLOAT,GETDATE()))</if>
+        <if test="dbName == 'mysql'">CURDATE()</if>
+    </update>
 </mapper>

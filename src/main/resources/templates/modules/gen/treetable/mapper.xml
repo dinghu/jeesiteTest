@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>mapper</name>
-	<filePath>src/main/resources/mappings/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
-	<fileName>${ClassName}Dao.xml</fileName>
-	<content><![CDATA[
+    <name>mapper</name>
+    <filePath>src/main/resources/mappings/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
+    <fileName>${ClassName}Dao.xml</fileName>
+    <content><![CDATA[
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${packageName}.${moduleName}.dao<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Dao">
@@ -211,5 +211,5 @@ ${updateField?substring(0, updateField?last_index_of(","))}
 	</update>
 	
 </mapper>]]>
-	</content>
+    </content>
 </template>

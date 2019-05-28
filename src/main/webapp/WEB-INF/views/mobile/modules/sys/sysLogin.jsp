@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%><!DOCTYPE >
+<%@ page import="org.apache.shiro.web.filter.authc.FormAuthenticationFilter" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
+<!DOCTYPE >
 <html>
 <head>
     <meta charset="utf-8">
@@ -23,32 +24,32 @@
             </nav> -->
         </header>
         <article data-scroll="true" id="login_article">
-	        <div class="indented">
-	            <form id="loginForm" action="${ctx}/login" method="post">
-	            	<div>&nbsp;</div>
-	            	<div class="input-group">
-		                <div class="input-row">
-		                    <label for="username">账号</label>
-		                    <input type="text" name="username" id="username" placeholder="请填写登录账号">
-		                </div>
-		                <div class="input-row">
-		                    <label for="password">密码</label>
-		                    <input type="password" name="password" id="password" placeholder="请填写登录密码">
-		                </div>
-		            </div>
-	            	<div class="input-group" id="validateCodeDiv" style="display:none;">
-		                <div class="input-row">
-		                    <label class="input-label mid" for="validateCode">验证码</label>
-		                    <sys:validateCode name="validateCode" inputCssStyle="margin-bottom:0;"
-		                    	imageCssStyle="padding-top:7px;"/>
-		                </div>
-		            </div>
-	            	<div>&nbsp;</div>
-	            	<input type="hidden" name="mobileLogin" value="true">
-	                <button id="btn" class="submit block" data-icon="key">登录</button>
-	            </form>
-	        </div>
-	    </article>
+            <div class="indented">
+                <form id="loginForm" action="${ctx}/login" method="post">
+                    <div>&nbsp;</div>
+                    <div class="input-group">
+                        <div class="input-row">
+                            <label for="username">账号</label>
+                            <input type="text" name="username" id="username" placeholder="请填写登录账号">
+                        </div>
+                        <div class="input-row">
+                            <label for="password">密码</label>
+                            <input type="password" name="password" id="password" placeholder="请填写登录密码">
+                        </div>
+                    </div>
+                    <div class="input-group" id="validateCodeDiv" style="display:none;">
+                        <div class="input-row">
+                            <label class="input-label mid" for="validateCode">验证码</label>
+                            <sys:validateCode name="validateCode" inputCssStyle="margin-bottom:0;"
+                                              imageCssStyle="padding-top:7px;"/>
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>
+                    <input type="hidden" name="mobileLogin" value="true">
+                    <button id="btn" class="submit block" data-icon="key">登录</button>
+                </form>
+            </div>
+        </article>
     </section>
 </div>
 <!--<script type="text/javascript" src="${ctxStatic}/jingle/js/lib/cordova.js"></script>-->
@@ -64,46 +65,46 @@
 <script type="text/javascript" src="${ctxStatic}/jingle/js/app/app.js"></script>
 <!--<script src="http://192.168.2.153:8080/target/target-script-min.js#anonymous"></script>-->
 <script type="text/javascript">
-var sessionid = '${not empty fns:getPrincipal() ? fns:getPrincipal().sessionid : ""}';
-$('body').delegate('#login_section','pageinit',function(){
-	$("#loginForm").submit(function(){
-		if ($('#username').val() == ''){
-			J.showToast('请填写账号', 'info');
-		}else if ($('#password').val() == ''){
-			J.showToast('请填写密码', 'info');
-		}else if ($('#validateCodeDiv').is(':visible') && $('#validateCode').val() == ''){
-			J.showToast('请填写验证码', 'info');
-		}else{
-			var loginForm = $("#loginForm");
-			$.post(loginForm.attr('action'), loginForm.serializeArray(), function(data){
-				if (data && data.sessionid){
-					sessionid = data.sessionid;
-					J.showToast('登录成功！', 'success');
-					J.Router.goTo('#index_section?index');
-				}else{
-					J.showToast(data.message, 'error');
-					if (data.shiroLoginFailure == 'org.apache.shiro.authc.AuthenticationException'){
-						$('#validateCodeDiv').show();
-					}
-					$('#validateCodeDiv a').click();
-				}
-				//console.log(data);
-			});
-		}
-		return false;
-	});
-});
-$('body').delegate('#login_section','pageshow',function(){
-	if (sessionid != ''){
-        var targetHash = location.hash;
-        if (targetHash == '#login_section'){
-    		//J.showToast('你已经登录！', 'success');
-    		J.Router.goTo('#index_section?index');
+    var sessionid = '${not empty fns:getPrincipal() ? fns:getPrincipal().sessionid : ""}';
+    $('body').delegate('#login_section', 'pageinit', function () {
+        $("#loginForm").submit(function () {
+            if ($('#username').val() == '') {
+                J.showToast('请填写账号', 'info');
+            } else if ($('#password').val() == '') {
+                J.showToast('请填写密码', 'info');
+            } else if ($('#validateCodeDiv').is(':visible') && $('#validateCode').val() == '') {
+                J.showToast('请填写验证码', 'info');
+            } else {
+                var loginForm = $("#loginForm");
+                $.post(loginForm.attr('action'), loginForm.serializeArray(), function (data) {
+                    if (data && data.sessionid) {
+                        sessionid = data.sessionid;
+                        J.showToast('登录成功！', 'success');
+                        J.Router.goTo('#index_section?index');
+                    } else {
+                        J.showToast(data.message, 'error');
+                        if (data.shiroLoginFailure == 'org.apache.shiro.authc.AuthenticationException') {
+                            $('#validateCodeDiv').show();
+                        }
+                        $('#validateCodeDiv a').click();
+                    }
+                    //console.log(data);
+                });
+            }
+            return false;
+        });
+    });
+    $('body').delegate('#login_section', 'pageshow', function () {
+        if (sessionid != '') {
+            var targetHash = location.hash;
+            if (targetHash == '#login_section') {
+                //J.showToast('你已经登录！', 'success');
+                J.Router.goTo('#index_section?index');
+            }
+        } else {
+            $('#login_article').addClass('active');
         }
-	}else{
-		$('#login_article').addClass('active');
-	}
-});
+    });
 </script>
 </body>
 </html>

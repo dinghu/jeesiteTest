@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.OfficeDao">
 
-	<sql id="officeColumns">
+    <sql id="officeColumns">
 		a.id,
 		a.parent_id AS "parent.id",
 		a.parent_ids,
@@ -33,53 +33,53 @@
 		pp.name AS "primaryPerson.name",
 		dp.name AS "deputyPerson.name"
 	</sql>
-	
-	<sql id="officeJoins">
+
+    <sql id="officeJoins">
 		LEFT JOIN sys_office p ON p.id = a.parent_id
 		LEFT JOIN sys_area ar ON ar.id = a.area_id
 		LEFT JOIN SYS_USER pp ON pp.id = a.primary_person
 		LEFT JOIN SYS_USER dp ON dp.id = a.deputy_person
     </sql>
-	
-	<select id="get" resultType="Office">
-		SELECT
-			<include refid="officeColumns"/>
-		FROM sys_office a
-		<include refid="officeJoins"/>
-		WHERE a.id = #{id}
-	</select>
-	
-	<select id="findList" resultType="Office">
-		SELECT
-			<include refid="officeColumns"/>
-		FROM sys_office a
-		<include refid="officeJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
-		<!-- 数据范围过滤 -->
-		${sqlMap.dsf}
-		OR a.id = #{currentUser.office.id}
-		ORDER BY a.code
-	</select>
-			
-	<select id="findAllList" resultType="Office">
-		SELECT
-			<include refid="officeColumns"/>
-		FROM sys_office a
-		<include refid="officeJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
-		ORDER BY a.code
-	</select>
-	
-	<select id="findByParentIdsLike" resultType="Office">
-		SELECT
-			<include refid="officeColumns"/>
-		FROM sys_office a
-		<include refid="officeJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} AND a.parent_ids LIKE #{parentIds}
-		ORDER BY a.code
-	</select>
-	
-	<insert id="insert">
+
+    <select id="get" resultType="Office">
+        SELECT
+        <include refid="officeColumns"/>
+        FROM sys_office a
+        <include refid="officeJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="Office">
+        SELECT
+        <include refid="officeColumns"/>
+        FROM sys_office a
+        <include refid="officeJoins"/>
+        WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+        <!-- 数据范围过滤 -->
+        ${sqlMap.dsf}
+        OR a.id = #{currentUser.office.id}
+        ORDER BY a.code
+    </select>
+
+    <select id="findAllList" resultType="Office">
+        SELECT
+        <include refid="officeColumns"/>
+        FROM sys_office a
+        <include refid="officeJoins"/>
+        WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+        ORDER BY a.code
+    </select>
+
+    <select id="findByParentIdsLike" resultType="Office">
+        SELECT
+        <include refid="officeColumns"/>
+        FROM sys_office a
+        <include refid="officeJoins"/>
+        WHERE a.del_flag = #{DEL_FLAG_NORMAL} AND a.parent_ids LIKE #{parentIds}
+        ORDER BY a.code
+    </select>
+
+    <insert id="insert">
 		INSERT INTO sys_office(
 			id, 
 			parent_id, 
@@ -132,8 +132,8 @@
 			#{deputyPerson.id}
 		)
 	</insert>
-	
-	<update id="update">
+
+    <update id="update">
 		UPDATE sys_office SET 
 			parent_id = #{parent.id}, 
 			parent_ids = #{parentIds}, 
@@ -156,21 +156,21 @@
 			deputy_person=#{deputyPerson.id}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="updateParentIds">
+
+    <update id="updateParentIds">
 		UPDATE sys_office SET 
 			parent_id = #{parent.id}, 
 			parent_ids = #{parentIds}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="delete">
-		UPDATE sys_office SET 
-			del_flag = #{DEL_FLAG_DELETE}
-		WHERE id = #{id} OR parent_ids LIKE 
-					<if test="dbName == 'oracle'">'%,'||#{id}||',%'</if>
-					<if test="dbName == 'mssql'">'%,'+#{id}+',%'</if>
-					<if test="dbName == 'mysql'">CONCAT('%,', #{id}, ',%')</if>
-	</update>
-	
+
+    <update id="delete">
+        UPDATE sys_office SET
+        del_flag = #{DEL_FLAG_DELETE}
+        WHERE id = #{id} OR parent_ids LIKE
+        <if test="dbName == 'oracle'">'%,'||#{id}||',%'</if>
+        <if test="dbName == 'mssql'">'%,'+#{id}+',%'</if>
+        <if test="dbName == 'mysql'">CONCAT('%,', #{id}, ',%')</if>
+    </update>
+
 </mapper>

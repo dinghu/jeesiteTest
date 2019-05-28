@@ -30,6 +30,7 @@ public class PaginationMapperProxy implements InvocationHandler {
 
     private static final Set<String> OBJECT_METHODS = new HashSet<String>() {
         private static final long serialVersionUID = -1782950882770203583L;
+
         {
             add("toString");
             add("getClass");

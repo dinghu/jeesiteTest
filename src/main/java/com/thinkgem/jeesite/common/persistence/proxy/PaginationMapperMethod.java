@@ -76,7 +76,7 @@ public class PaginationMapperMethod {
         RowBounds rowBounds;
         if (paginationIndex != null) {
             page = (Page<Object>) args[paginationIndex];
-            rowBounds =  new RowBounds(page.getFirstResult(), page.getMaxResults());
+            rowBounds = new RowBounds(page.getFirstResult(), page.getMaxResults());
         } else if (rowBoundsIndex != null) {
             rowBounds = (RowBounds) args[rowBoundsIndex];
             page = new Page<Object>();
