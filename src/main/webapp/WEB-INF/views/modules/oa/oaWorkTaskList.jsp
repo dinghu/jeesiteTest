@@ -20,11 +20,11 @@
 <body>
 <ul class="nav nav-tabs">
     <li class="active"><a href="${ctx}/oa/oaWorkTask/${oaWorkTask.self?'self':''}">任务列表</a></li>
-    <%--<c:if test="${!oaWorkTask.self}">--%>
+    <c:if test="${oaWorkTask.self}">
         <shiro:hasPermission name="oa:oaWorkTask:edit">
             <li><a href="${ctx}/oa/oaWorkTask/form">任务添加</a></li>
         </shiro:hasPermission>
-    <%--</c:if>--%>
+    </c:if>
 </ul>
 <form:form id="searchForm" modelAttribute="oaWorkTask" action="${ctx}/oa/oaWorkTask/${oaWorkTask.self?'self':''}"
            method="post" class="breadcrumb form-search">

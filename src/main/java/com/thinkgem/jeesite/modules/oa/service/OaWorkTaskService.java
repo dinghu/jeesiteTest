@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
 public class OaWorkTaskService extends BaseService<OaWorkTaskDao, OaWorkTask> {
     @Autowired
     private OaWorkTaskLogDao oaWorkTaskLogDao;
@@ -25,5 +24,9 @@ public class OaWorkTaskService extends BaseService<OaWorkTaskDao, OaWorkTask> {
         PageQuery pageQuery = new PageQuery("op_time", "desc", 0);
         List<FilterRule> rules = FilterRuleBuilder.newBuilder().key("oa_task_id").eq().value(OaWorkTaskId).build();
         return oaWorkTaskLogDao.findByPage(rules,pageQuery);
+    }
+
+    public int saveOaWorkTaskLog(OaWorkTaskLog oaWorkTaskLog) {
+        return oaWorkTaskLogDao.insertSelective(oaWorkTaskLog);
     }
 }

@@ -2,6 +2,7 @@ package com.thinkgem.jeesite.core;
 
 import com.thinkgem.jeesite.common.mysql.FilterRule;
 import com.thinkgem.jeesite.common.mysql.PageQuery;
+import com.thinkgem.jeesite.modules.oa.entity.OaWorkTask;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,6 +41,11 @@ public class BaseService<D extends BaseDao<T>, T> {
 
     public List<T> findByPage(@Param("filterRules") List<FilterRule> filterRules, @Param("pageQuery") PageQuery pageQuery) {
         return dao.findByPage(filterRules, pageQuery);
+    }
+
+    public List<T> findByPageSortByTime() {
+        PageQuery pageQuery = new PageQuery("update_time", "desc", 0);
+        return findByPage(null, pageQuery);
     }
 
     public List<T> getAll() {
