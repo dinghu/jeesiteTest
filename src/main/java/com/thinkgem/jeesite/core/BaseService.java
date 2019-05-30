@@ -43,7 +43,8 @@ public class BaseService<D extends BaseDao<T, KT>, T, KT> {
     }
 
     public List<T> findByPageSortByTime(int page) {
-        PageQuery pageQuery = new PageQuery("update_time", "desc", PageQuery.DEFAULTPAGE_SIZE * (page - 1));
+        PageQuery pageQuery = new PageQuery(page,"update_time", "desc");
+        pageQuery.setPageNo(page);
         return findByPage(null, pageQuery);
     }
 

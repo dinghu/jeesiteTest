@@ -59,7 +59,7 @@ public class OaWorkTaskController extends BaseController {
         oaWorkTask.setPage(page);
         Integer userId = Integer.valueOf(UserUtils.getUserId());
         page.setCount(workTaskService.getMyWorkTaskTotalCount(userId));
-        page.setList(workTaskService.findByPageSortByTimeByUid(userId));
+        page.setList(workTaskService.findByPageSortByTimeByUid(userId,page.getPageNo()));
         model.addAttribute("page", page);
         return "modules/oa/oaWorkTaskList";
     }

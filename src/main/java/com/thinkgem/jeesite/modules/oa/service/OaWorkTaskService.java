@@ -26,8 +26,9 @@ public class OaWorkTaskService extends StringKeyBaseService<OaWorkTaskDao, OaWor
         return oaWorkTaskLogDao.findByPage(rules, pageQuery);
     }
 
-    public List<OaWorkTask> findByPageSortByTimeByUid(Integer uid) {
-        PageQuery pageQuery = new PageQuery("update_time", "desc", 0);
+    public List<OaWorkTask> findByPageSortByTimeByUid(Integer uid,int pageNo) {
+        PageQuery pageQuery = new PageQuery(pageNo,"update_time", "desc");
+        pageQuery.setPageNo(pageNo);
         List<FilterRule> rules = FilterRuleBuilder.newBuilder().key("owner_uid").eq().value(uid).build();
         return findByPage(rules, pageQuery);
     }
