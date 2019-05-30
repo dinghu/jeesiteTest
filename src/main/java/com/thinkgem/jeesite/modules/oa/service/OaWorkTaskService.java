@@ -23,10 +23,25 @@ public class OaWorkTaskService extends StringKeyBaseService<OaWorkTaskDao, OaWor
     public List<OaWorkTaskLog> getWorkTaskLog(String OaWorkTaskId) {
         PageQuery pageQuery = new PageQuery("op_time", "desc", 0);
         List<FilterRule> rules = FilterRuleBuilder.newBuilder().key("oa_task_id").eq().value(OaWorkTaskId).build();
-        return oaWorkTaskLogDao.findByPage(rules,pageQuery);
+        return oaWorkTaskLogDao.findByPage(rules, pageQuery);
+    }
+
+    public List<OaWorkTask> findByPageSortByTimeByUid(Integer uid) {
+        PageQuery pageQuery = new PageQuery("update_time", "desc", 0);
+        List<FilterRule> rules = FilterRuleBuilder.newBuilder().key("owner_uid").eq().value(uid).build();
+        return findByPage(rules, pageQuery);
     }
 
     public int saveOaWorkTaskLog(OaWorkTaskLog oaWorkTaskLog) {
         return oaWorkTaskLogDao.insertSelective(oaWorkTaskLog);
+    }
+
+    public int getMyWorkTaskTotalCount(Integer uid) {
+        List<FilterRule> rules = FilterRuleBuilder.newBuilder().key("owner_uid").eq().value(uid).build();
+        return super.getTotalCount(rules);
+    }
+
+    public int getWorkTaskTotalCount() {
+        return super.getTotalCount(null);
     }
 }

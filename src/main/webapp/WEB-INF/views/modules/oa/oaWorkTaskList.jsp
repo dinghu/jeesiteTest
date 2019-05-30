@@ -26,7 +26,7 @@
         </shiro:hasPermission>
     </c:if>
 </ul>
-<form:form id="searchForm" modelAttribute="oaWorkTask" action="${ctx}/oa/oaWorkTask/${oaWorkTask.self?'self':''}"
+<form:form id="searchForm" modelAttribute="oaWorkTask" action="${ctx}/oa/oaWorkTask/${oaWorkTask.self?'self':'list'}"
            method="post" class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>

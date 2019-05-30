@@ -138,6 +138,24 @@ public class UserUtils {
     }
 
     /**
+     * 获取当前用户
+     *
+     * @return 取不到返回 new User()
+     */
+    public static String getUserId() {
+        User user;
+        Principal principal = getPrincipal();
+        if (principal != null) {
+            user = get(principal.getId());
+            if (user != null) {
+                return user.getId();
+            }
+        }
+        // 如果没有登录，则返回实例化空的User对象。
+        return new User().getId();
+    }
+
+    /**
      * 获取当前用户角色列表
      *
      * @return

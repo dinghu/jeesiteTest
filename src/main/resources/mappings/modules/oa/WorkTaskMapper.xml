@@ -167,4 +167,9 @@
             order by ${pageQuery.orderBy} ${pageQuery.orderType} limit #{pageQuery.start} , #{pageQuery.pageSize}
         </if>
     </select>
+
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        select count(*) from oa_task
+        <include refid="FilterMapper.parseFilterRules"/>
+    </select>
 </mapper>

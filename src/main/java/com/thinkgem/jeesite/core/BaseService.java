@@ -42,12 +42,16 @@ public class BaseService<D extends BaseDao<T, KT>, T, KT> {
         return dao.findByPage(filterRules, pageQuery);
     }
 
-    public List<T> findByPageSortByTime() {
-        PageQuery pageQuery = new PageQuery("update_time", "desc", 0);
+    public List<T> findByPageSortByTime(int page) {
+        PageQuery pageQuery = new PageQuery("update_time", "desc", PageQuery.DEFAULTPAGE_SIZE * (page - 1));
         return findByPage(null, pageQuery);
     }
 
     public List<T> getAll() {
         return dao.findByPage(null, null);
+    }
+
+    public int getTotalCount(@Param("filterRules") List<FilterRule> filterRules) {
+        return dao.getTotalCount(filterRules);
     }
 }

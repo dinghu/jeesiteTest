@@ -20,4 +20,6 @@ public interface BaseDao<T,KT> {
     int updateByPrimaryKey(T record);
 
     List<T> findByPage(@Param("filterRules") List<FilterRule> filterRules, @Param("pageQuery") PageQuery pageQuery);
+
+    int getTotalCount(@Param("filterRules") List<FilterRule> filterRules);
 }

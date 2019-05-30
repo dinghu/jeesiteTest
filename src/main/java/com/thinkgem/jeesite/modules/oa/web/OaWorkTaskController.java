@@ -6,6 +6,8 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.oa.entity.OaWorkTask;
 import com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog;
 import com.thinkgem.jeesite.modules.oa.service.OaWorkTaskService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,8 +42,8 @@ public class OaWorkTaskController extends BaseController {
         oaWorkTask.setSelf(false);
         Page<OaWorkTask> page = new Page<OaWorkTask>(request, response);
         oaWorkTask.setPage(page);
-        page.setList(workTaskService.findByPageSortByTime());
-        page.initialize();
+        page.setCount(workTaskService.getWorkTaskTotalCount());
+        page.setList(workTaskService.findByPageSortByTime(page.getPageNo()));
         model.addAttribute("page", page);
         return "modules/oa/oaWorkTaskList";
     }
@@ -55,8 +57,9 @@ public class OaWorkTaskController extends BaseController {
         oaWorkTask.setSelf(true);
         Page<OaWorkTask> page = new Page<OaWorkTask>(request, response);
         oaWorkTask.setPage(page);
-        page.setList(workTaskService.findByPageSortByTime());
-        page.initialize();
+        Integer userId = Integer.valueOf(UserUtils.getUserId());
+        page.setCount(workTaskService.getMyWorkTaskTotalCount(userId));
+        page.setList(workTaskService.findByPageSortByTimeByUid(userId));
         model.addAttribute("page", page);
         return "modules/oa/oaWorkTaskList";
     }
