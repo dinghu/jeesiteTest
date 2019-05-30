@@ -1,5 +1,6 @@
 package com.thinkgem.jeesite.common.mysql;
 
+import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 
 /**
@@ -9,7 +10,7 @@ public class PageQuery {
 
 	private static final int MAX_PAGE_NO = 5000;
 	// 默认10
-	public static final int DEFAULTPAGE_SIZE = 10;
+	public static final int DEFAULTPAGE_SIZE = Integer.valueOf(Global.getConfig("page.pageSize"));
 
 	private int pageNo;
 

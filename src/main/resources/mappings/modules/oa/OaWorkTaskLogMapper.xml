@@ -1,19 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.oa.dao.OaWorkTaskLogDao">
     <resultMap id="BaseResultMap" type="com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="oa_task_id" property="oaTaskId" jdbcType="INTEGER"/>
-        <result column="op_from_uid" property="opFromUid" jdbcType="INTEGER"/>
-        <result column="op_to_uid" property="opToUid" jdbcType="INTEGER"/>
-        <result column="type" property="type" jdbcType="INTEGER"/>
-        <result column="content" property="content" jdbcType="VARCHAR"/>
-        <result column="op_time" property="opTime" jdbcType="TIMESTAMP"/>
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="oa_task_id" jdbcType="CHAR" property="oaTaskId"/>
+        <result column="op_from_uid" jdbcType="INTEGER" property="opFromUid"/>
+        <result column="op_to_uid" jdbcType="INTEGER" property="opToUid"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="op_time" jdbcType="TIMESTAMP" property="opTime"/>
+        <association property="fromUser" select="com.thinkgem.jeesite.modules.sys.dao.UserDao.get"
+                     column="op_from_uid">
+        </association>
+        <association property="toUser" select="com.thinkgem.jeesite.modules.sys.dao.UserDao.get"
+                     column="op_to_uid">
+        </association>
     </resultMap>
     <sql id="Base_Column_List">
     id, oa_task_id, op_from_uid, op_to_uid, type, content, op_time
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from oa_task_log
@@ -27,7 +33,7 @@
     insert into oa_task_log (id, oa_task_id, op_from_uid, 
       op_to_uid, type, content, 
       op_time)
-    values (#{id,jdbcType=INTEGER}, #{oaTaskId,jdbcType=INTEGER}, #{opFromUid,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{oaTaskId,jdbcType=CHAR}, #{opFromUid,jdbcType=INTEGER}, 
       #{opToUid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
       #{opTime,jdbcType=TIMESTAMP})
   </insert>
@@ -61,7 +67,7 @@
                 #{id,jdbcType=INTEGER},
             </if>
             <if test="oaTaskId != null">
-                #{oaTaskId,jdbcType=INTEGER},
+                #{oaTaskId,jdbcType=CHAR},
             </if>
             <if test="opFromUid != null">
                 #{opFromUid,jdbcType=INTEGER},
@@ -84,7 +90,7 @@
         update oa_task_log
         <set>
             <if test="oaTaskId != null">
-                oa_task_id = #{oaTaskId,jdbcType=INTEGER},
+                oa_task_id = #{oaTaskId,jdbcType=CHAR},
             </if>
             <if test="opFromUid != null">
                 op_from_uid = #{opFromUid,jdbcType=INTEGER},
@@ -106,7 +112,7 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog">
     update oa_task_log
-    set oa_task_id = #{oaTaskId,jdbcType=INTEGER},
+    set oa_task_id = #{oaTaskId,jdbcType=CHAR},
       op_from_uid = #{opFromUid,jdbcType=INTEGER},
       op_to_uid = #{opToUid,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER},

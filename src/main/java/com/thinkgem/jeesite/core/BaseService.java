@@ -2,20 +2,19 @@ package com.thinkgem.jeesite.core;
 
 import com.thinkgem.jeesite.common.mysql.FilterRule;
 import com.thinkgem.jeesite.common.mysql.PageQuery;
-import com.thinkgem.jeesite.modules.oa.entity.OaWorkTask;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class BaseService<D extends BaseDao<T>, T> {
+public class BaseService<D extends BaseDao<T, KT>, T, KT> {
     /**
      * 持久层对象
      */
     @Autowired
     protected D dao;
 
-    public int deleteByPrimaryKey(Integer id) {
+    public int deleteByPrimaryKey(KT id) {
         return dao.deleteByPrimaryKey(id);
     }
 
@@ -27,7 +26,7 @@ public class BaseService<D extends BaseDao<T>, T> {
         return dao.insertSelective(record);
     }
 
-    public T selectByPrimaryKey(Integer id) {
+    public T selectByPrimaryKey(KT id) {
         return dao.selectByPrimaryKey(id);
     }
 

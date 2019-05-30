@@ -6,14 +6,14 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface BaseDao<T> {
-    int deleteByPrimaryKey(Integer id);
+public interface BaseDao<T,KT> {
+    int deleteByPrimaryKey(KT id);
 
     int insert(T record);
 
     int insertSelective(T record);
 
-    T selectByPrimaryKey(Integer id);
+    T selectByPrimaryKey(KT id);
 
     int updateByPrimaryKeySelective(T record);
 

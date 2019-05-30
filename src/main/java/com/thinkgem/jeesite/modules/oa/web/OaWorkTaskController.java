@@ -1,9 +1,8 @@
 package com.thinkgem.jeesite.modules.oa.web;
 
 import com.thinkgem.jeesite.common.persistence.Page;
-import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.common.utils.UuidUtls;
 import com.thinkgem.jeesite.common.web.BaseController;
-import com.thinkgem.jeesite.modules.oa.entity.OaNotify;
 import com.thinkgem.jeesite.modules.oa.entity.OaWorkTask;
 import com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog;
 import com.thinkgem.jeesite.modules.oa.service.OaWorkTaskService;
@@ -27,7 +26,7 @@ public class OaWorkTaskController extends BaseController {
     OaWorkTaskService workTaskService;
 
     @ModelAttribute
-    public OaWorkTask get(Integer id) {
+    public OaWorkTask get(String id) {
         OaWorkTask entity = workTaskService.selectByPrimaryKey(id);
         if (entity == null) {
             entity = new OaWorkTask();
@@ -36,10 +35,11 @@ public class OaWorkTaskController extends BaseController {
     }
 
     @RequiresPermissions("oa:oaWorkTask:view")
-    @RequestMapping(value = {"list", ""})
-    public String list(OaWorkTask workTask, HttpServletRequest request, HttpServletResponse response, Model model) {
+    @RequestMapping(value = {"list"})
+    public String list(OaWorkTask oaWorkTask, HttpServletRequest request, HttpServletResponse response, Model model) {
+        oaWorkTask.setSelf(false);
         Page<OaWorkTask> page = new Page<OaWorkTask>(request, response);
-        workTask.setPage(page);
+        oaWorkTask.setPage(page);
         page.setList(workTaskService.findByPageSortByTime());
         page.initialize();
         model.addAttribute("page", page);
@@ -97,11 +97,24 @@ public class OaWorkTaskController extends BaseController {
         }
         OaWorkTask oaWorkTaskDb = workTaskService.selectByPrimaryKey(oaWorkTask.getId());
         if (oaWorkTaskDb != null) {
+            //保存任务
+            oaWorkTask.setUpdateTime(new Date());
             workTaskService.updateByPrimaryKey(oaWorkTask);
-            oaWorkTask.setUpdateTime(oaWorkTask.getCreateTime());
+
+            //生成日志记录
+            OaWorkTaskLog oaWorkTaskLog = new OaWorkTaskLog();
+            oaWorkTaskLog.setContent("修改了任务");
+            oaWorkTaskLog.setOaTaskId(oaWorkTask.getId());
+            oaWorkTaskLog.setOpFromUid(1);
+            oaWorkTaskLog.setOaTaskId(oaWorkTask.getId());
+            oaWorkTaskLog.setOpToUid(1);
+            oaWorkTaskLog.setOpTime(new Date());
+            workTaskService.saveOaWorkTaskLog(oaWorkTaskLog);
             addMessage(redirectAttributes, "添加任务'" + oaWorkTask.getTitle() + "'成功");
         } else {
             //保存任务
+            String taskId = UuidUtls.getUUID();
+            oaWorkTask.setId(taskId);
             oaWorkTask.setCreateTime(new Date());
             oaWorkTask.setUpdateTime(oaWorkTask.getCreateTime());
             workTaskService.insertSelective(oaWorkTask);
@@ -110,6 +123,7 @@ public class OaWorkTaskController extends BaseController {
             oaWorkTaskLog.setContent("创建了任务");
             oaWorkTaskLog.setOaTaskId(oaWorkTask.getId());
             oaWorkTaskLog.setOpFromUid(1);
+            oaWorkTaskLog.setOaTaskId(taskId);
             oaWorkTaskLog.setOpToUid(1);
             oaWorkTaskLog.setOpTime(new Date());
             workTaskService.saveOaWorkTaskLog(oaWorkTaskLog);
