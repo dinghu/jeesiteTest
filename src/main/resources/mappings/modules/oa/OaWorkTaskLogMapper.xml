@@ -4,8 +4,8 @@
     <resultMap id="BaseResultMap" type="com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="oa_task_id" jdbcType="CHAR" property="oaTaskId"/>
-        <result column="op_from_uid" jdbcType="INTEGER" property="opFromUid"/>
-        <result column="op_to_uid" jdbcType="INTEGER" property="opToUid"/>
+        <result column="op_from_uid" jdbcType="VARCHAR" property="opFromUid"/>
+        <result column="op_to_uid" jdbcType="VARCHAR" property="opToUid"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="op_time" jdbcType="TIMESTAMP" property="opTime"/>
@@ -33,8 +33,8 @@
     insert into oa_task_log (id, oa_task_id, op_from_uid, 
       op_to_uid, type, content, 
       op_time)
-    values (#{id,jdbcType=INTEGER}, #{oaTaskId,jdbcType=CHAR}, #{opFromUid,jdbcType=INTEGER}, 
-      #{opToUid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{oaTaskId,jdbcType=CHAR}, #{opFromUid,jdbcType=VARCHAR},
+      #{opToUid,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
       #{opTime,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" parameterType="com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog">
@@ -70,10 +70,10 @@
                 #{oaTaskId,jdbcType=CHAR},
             </if>
             <if test="opFromUid != null">
-                #{opFromUid,jdbcType=INTEGER},
+                #{opFromUid,jdbcType=VARCHAR},
             </if>
             <if test="opToUid != null">
-                #{opToUid,jdbcType=INTEGER},
+                #{opToUid,jdbcType=VARCHAR},
             </if>
             <if test="type != null">
                 #{type,jdbcType=INTEGER},
@@ -93,10 +93,10 @@
                 oa_task_id = #{oaTaskId,jdbcType=CHAR},
             </if>
             <if test="opFromUid != null">
-                op_from_uid = #{opFromUid,jdbcType=INTEGER},
+                op_from_uid = #{opFromUid,jdbcType=VARCHAR},
             </if>
             <if test="opToUid != null">
-                op_to_uid = #{opToUid,jdbcType=INTEGER},
+                op_to_uid = #{opToUid,jdbcType=VARCHAR},
             </if>
             <if test="type != null">
                 type = #{type,jdbcType=INTEGER},
@@ -113,8 +113,8 @@
     <update id="updateByPrimaryKey" parameterType="com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog">
     update oa_task_log
     set oa_task_id = #{oaTaskId,jdbcType=CHAR},
-      op_from_uid = #{opFromUid,jdbcType=INTEGER},
-      op_to_uid = #{opToUid,jdbcType=INTEGER},
+      op_from_uid = #{opFromUid,jdbcType=VARCHAR},
+      op_to_uid = #{opToUid,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
       op_time = #{opTime,jdbcType=TIMESTAMP}

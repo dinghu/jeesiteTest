@@ -52,7 +52,7 @@
                     ${fns:abbr(oaWorkTask.title,50)}
             </a></td>
             <td>
-                工作任务
+                    ${fns:getDictLabel(oaWorkTask.type, 'oa_task_type', '')}
             </td>
             <td>
                 进行中

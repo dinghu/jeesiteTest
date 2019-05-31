@@ -5,8 +5,8 @@
         <id column="id" property="id" jdbcType="CHAR"/>
         <result column="type" property="type" jdbcType="INTEGER"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
-        <result column="create_uid" property="createUid" jdbcType="INTEGER"/>
-        <result column="owner_uid" property="ownerUid" jdbcType="INTEGER"/>
+        <result column="create_uid" property="createUid" jdbcType="VARCHAR"/>
+        <result column="owner_uid" property="ownerUid" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
         <result column="files" property="files" jdbcType="VARCHAR"/>
@@ -41,7 +41,7 @@
       files, create_time, update_time
       )
     values (#{id,jdbcType=CHAR}, #{type,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
-      #{createUid,jdbcType=INTEGER},#{ownerUid,jdbcType=INTEGER} #{content,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+      #{createUid,jdbcType=VARCHAR},#{ownerUid,jdbcType=VARCHAR} #{content,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
       #{files,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -90,10 +90,10 @@
                 #{title,jdbcType=VARCHAR},
             </if>
             <if test="createUid != null">
-                #{createUid,jdbcType=INTEGER},
+                #{createUid,jdbcType=VARCHAR},
             </if>
             <if test="ownerUid != null">
-                #{ownerUid,jdbcType=INTEGER},
+                #{ownerUid,jdbcType=VARCHAR},
             </if>
             <if test="content != null">
                 #{content,jdbcType=VARCHAR},
@@ -122,10 +122,10 @@
                 title = #{title,jdbcType=VARCHAR},
             </if>
             <if test="createUid != null">
-                create_uid = #{createUid,jdbcType=INTEGER},
+                create_uid = #{createUid,jdbcType=VARCHAR},
             </if>
             <if test="ownerUid != null">
-                owner_uid = #{ownerUid,jdbcType=INTEGER},
+                owner_uid = #{ownerUid,jdbcType=VARCHAR},
             </if>
             <if test="content != null">
                 content = #{content,jdbcType=VARCHAR},
@@ -149,8 +149,8 @@
     update oa_task
     set type = #{type,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
-      create_uid = #{createUid,jdbcType=INTEGER},
-      owner_uid = #{ownerUid,jdbcType=INTEGER},
+      create_uid = #{createUid,jdbcType=VARCHAR},
+      owner_uid = #{ownerUid,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       files = #{files,jdbcType=VARCHAR},

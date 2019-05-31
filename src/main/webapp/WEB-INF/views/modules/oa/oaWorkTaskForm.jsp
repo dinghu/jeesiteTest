@@ -38,17 +38,17 @@
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
 
-    <%--<div class="control-group">--%>
-        <%--<label class="control-label">类型：</label>--%>
-        <%--<div class="controls">--%>
-            <%--<form:select path="type" class="input-xlarge required">--%>
-                <%--<form:option value="" label=""/>--%>
-                <%--<form:options items="${fns:getDictList('oa_notify_type')}" itemLabel="label" itemValue="value"--%>
-                              <%--htmlEscape="false"/>--%>
-            <%--</form:select>--%>
-            <%--<span class="help-inline"><font color="red">*</font> </span>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+    <div class="control-group">
+        <label class="control-label">类型：</label>
+        <div class="controls">
+            <form:select path="type" class="input-xlarge required">
+                <form:option value="" label=""/>
+                <form:options items="${fns:getDictList('oa_task_type')}" itemLabel="label" itemValue="value"
+                              htmlEscape="false"/>
+            </form:select>
+            <span class="help-inline"><font color="red">*</font> </span>
+        </div>
+    </div>
 
     <div class="control-group">
         <label class="control-label">标题：</label>

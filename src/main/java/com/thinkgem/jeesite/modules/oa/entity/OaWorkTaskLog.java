@@ -10,9 +10,9 @@ public class OaWorkTaskLog implements Serializable {
 
     private String oaTaskId;
 
-    private Integer opFromUid;
+    private String opFromUid;
 
-    private Integer opToUid;
+    private String opToUid;
 
     private Integer type;
 
@@ -58,19 +58,19 @@ public class OaWorkTaskLog implements Serializable {
         this.oaTaskId = oaTaskId;
     }
 
-    public Integer getOpFromUid() {
+    public String getOpFromUid() {
         return opFromUid;
     }
 
-    public void setOpFromUid(Integer opFromUid) {
+    public void setOpFromUid(String opFromUid) {
         this.opFromUid = opFromUid;
     }
 
-    public Integer getOpToUid() {
+    public String getOpToUid() {
         return opToUid;
     }
 
-    public void setOpToUid(Integer opToUid) {
+    public void setOpToUid(String opToUid) {
         this.opToUid = opToUid;
     }
 

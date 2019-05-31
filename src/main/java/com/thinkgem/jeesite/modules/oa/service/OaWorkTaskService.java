@@ -26,7 +26,7 @@ public class OaWorkTaskService extends StringKeyBaseService<OaWorkTaskDao, OaWor
         return oaWorkTaskLogDao.findByPage(rules, pageQuery);
     }
 
-    public List<OaWorkTask> findByPageSortByTimeByUid(Integer uid,int pageNo) {
+    public List<OaWorkTask> findByPageSortByTimeByUid(String uid,int pageNo) {
         PageQuery pageQuery = new PageQuery(pageNo,"update_time", "desc");
         pageQuery.setPageNo(pageNo);
         List<FilterRule> rules = FilterRuleBuilder.newBuilder().key("owner_uid").eq().value(uid).build();
@@ -37,7 +37,7 @@ public class OaWorkTaskService extends StringKeyBaseService<OaWorkTaskDao, OaWor
         return oaWorkTaskLogDao.insertSelective(oaWorkTaskLog);
     }
 
-    public int getMyWorkTaskTotalCount(Integer uid) {
+    public int getMyWorkTaskTotalCount(String uid) {
         List<FilterRule> rules = FilterRuleBuilder.newBuilder().key("owner_uid").eq().value(uid).build();
         return super.getTotalCount(rules);
     }

@@ -15,9 +15,9 @@ public class OaWorkTask implements Serializable {
 
     private String title;
 
-    private Integer createUid;
+    private String createUid;
 
-    private Integer ownerUid;
+    private String ownerUid;
 
     private String content;
 
@@ -63,11 +63,11 @@ public class OaWorkTask implements Serializable {
         this.oaWorkTaskLogList = oaWorkTaskLogList;
     }
 
-    public Integer getOwnerUid() {
+    public String getOwnerUid() {
         return ownerUid;
     }
 
-    public void setOwnerUid(Integer ownerUid) {
+    public void setOwnerUid(String ownerUid) {
         this.ownerUid = ownerUid;
     }
 
@@ -117,11 +117,11 @@ public class OaWorkTask implements Serializable {
         this.title = title;
     }
 
-    public Integer getCreateUid() {
+    public String getCreateUid() {
         return createUid;
     }
 
-    public void setCreateUid(Integer createUid) {
+    public void setCreateUid(String createUid) {
         this.createUid = createUid;
     }
 
