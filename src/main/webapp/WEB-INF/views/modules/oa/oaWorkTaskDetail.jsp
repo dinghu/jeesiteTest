@@ -33,12 +33,9 @@
         </c:if>
 
         <c:if test="${!fns:endsWith(oaWorkTask.files,'jpg' )}">
-            <div>
-                <form:hidden id="files" path="files" htmlEscape="false" maxlength="255" class="input-xlarge"/>
-            </div>
+            <%--<form:hidden id="files" path="${oaWorkTask.files}" htmlEscape="false" maxlength="255" class="input-xlarge"/>--%>
+            <a href="${oaWorkTask.files}">${fns:jsGetFileNameFromUrl(oaWorkTask.files)}</a>
         </c:if>
-
-
     </div>
 </div>
 <div class="row" style="margin-left: 10px">

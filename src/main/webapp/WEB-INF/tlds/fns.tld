@@ -223,6 +223,14 @@
         <example>${fns:jsGetVal('row.user.id')} 返回：!row?'':!row.user?'':!row.user.id?'':row.user.id</example>
     </function>
 
+    <function>
+        <description>转换为JS获取对象值，生成三目运算返回结果。</description>
+        <name>jsGetFileNameFromUrl</name>
+        <function-class>com.thinkgem.jeesite.common.utils.StringUtils</function-class>
+        <function-signature>java.lang.String jsGetFileNameFromUrl(java.lang.String)</function-signature>
+        <example>${fns:jsGetVal('row.user.id')} 返回：!row?'':!row.user?'':!row.user.id?'':row.user.id</example>
+    </function>
+
     <!-- DateUtils -->
     <function>
         <description>获取当前日期</description>

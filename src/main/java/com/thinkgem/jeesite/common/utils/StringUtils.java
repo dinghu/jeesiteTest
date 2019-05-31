@@ -400,4 +400,10 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return result.toString();
     }
 
+    public static String jsGetFileNameFromUrl(String url) {
+        String fName = url.trim();
+        String fileName = fName.substring(fName.lastIndexOf("/") + 1);
+        return fileName;
+    }
+
 }
