@@ -64,15 +64,15 @@
             <span class="help-inline"><font color="red">*</font> </span>
         </div>
     </div>
-    <c:if test="${oaWorkTask.status ne '1'}">
+    <%--<c:if test="${oaWorkTask.status ne '1'}">--%>
         <div class="control-group">
             <label class="control-label">附件：</label>
             <div class="controls">
                 <form:hidden id="files" path="files" htmlEscape="false" maxlength="255" class="input-xlarge"/>
-                <sys:ckfinder input="files" type="files" uploadPath="/oa/notify" selectMultiple="true"/>
+                <sys:ckfinder input="files" type="files" uploadPath="/oa/oaWorkTask" selectMultiple="true"/>
             </div>
         </div>
-    </c:if>
+    <%--</c:if>--%>
     <div class="form-actions">
         <c:if test="${oaWorkTask.status ne '1'}">
             <shiro:hasPermission name="oa:oaWorkTask:edit"><input id="btnSubmit" class="btn btn-primary" type="submit"

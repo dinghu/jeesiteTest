@@ -21,6 +21,24 @@
             发布者：${oaWorkTask.createUser.name} &nbsp;
             发布时间：<fmt:formatDate value="${oaWorkTask.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/> &nbsp;
             更新时间：<fmt:formatDate value="${oaWorkTask.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+
+        <c:if test="${not empty oaWorkTask.files}">
+            <div style="margin-top: 25px">
+                <span style="display: block">附件：</span>
+            </div>
+        </c:if>
+
+        <c:if test="${fns:endsWith(oaWorkTask.files,'jpg' )}">
+            <img src='${oaWorkTask.files}' style="margin-top: 10px">
+        </c:if>
+
+        <c:if test="${!fns:endsWith(oaWorkTask.files,'jpg' )}">
+            <div>
+                <form:hidden id="files" path="files" htmlEscape="false" maxlength="255" class="input-xlarge"/>
+            </div>
+        </c:if>
+
+
     </div>
 </div>
 <div class="row" style="margin-left: 10px">
