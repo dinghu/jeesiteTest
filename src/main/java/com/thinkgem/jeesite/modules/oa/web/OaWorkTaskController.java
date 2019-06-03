@@ -80,6 +80,12 @@ public class OaWorkTaskController extends BaseController {
         return "modules/oa/oaWorkTaskForm";
     }
 
+    @RequestMapping(value = "assignto")
+    public String assignto(OaWorkTask oaWorkTask, String note, Model model) {
+        model.addAttribute("oaWorkTask", oaWorkTask);
+        return "modules/oa/oaTaskAssignTo";
+    }
+
 
     protected void addMessage(RedirectAttributes redirectAttributes, String... messages) {
         StringBuilder sb = new StringBuilder();
