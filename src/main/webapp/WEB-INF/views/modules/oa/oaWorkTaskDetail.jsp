@@ -5,7 +5,43 @@
 <head>
     <title>任务详情</title>
     <meta name="decorator" content="default"/>
+    <link href="jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet"/>
+    <script src="jquery-jbox/2.3/jquery-1.4.2.min.js"></script>
+    <script src="jquery-jbox/2.3/jquery.jBox-2.3.src.js"></script>
     <script type="text/javascript">
+        function assignTo(title) {
+            var html = "<div style='padding:10px;'><span style='width: 60px;float: left'> 指派给：</span> <input type='text' id='yourname' name='yourname' /></div>"
+                + "<div style='padding:10px;'><span style='width: 60px;float: left'> 备 注：</span><input type='text' id='note' name='note' /></div>"
+            var content = {
+                state1: {
+                    content: html,
+                    buttons: {'确定': 1, '取消': 0},
+                    buttonsFocus: 0,
+                    submit: function (v, h, f) {
+                        if (v == 0) {
+                            return true; // close the window
+                        } else {
+                            if (f.yourname == '') {
+                                $.jBox.tip("请输入您的姓名。", 'error', {focusId: "yourname"}); // 关闭设置 yourname 为焦点
+                                return false;
+                            }
+
+                            $.jBox.tip("你叫：" + f.yourname);//ajax请求
+                            $.jBox("iframe:" + '${ctx}/oa/oaWorkTask/list', {
+                                width: 900,
+                                height: 300,
+                                title: "交易明细:编号" + $(this).text(),
+                                buttons: {'关闭': true}
+                            });
+                        }
+                        return false;
+                    }
+                }
+            };
+
+            $.jBox(content);
+            return false;
+        }
     </script>
 </head>
 <body>
@@ -52,6 +88,31 @@
                 </span>
             </div>
         </c:forEach>
+    </div>
+
+    <div class="span12"
+         style="border-top:1px solid #ddd;margin-top:25px; margin-bottom: 25px;padding-top: 15px;color: #2fa4e7">
+
+        <%--<button class="btn btn-default btn-xs btn-info" onClick="location.href='/admin/editStudent?id=${item.userid}'">--%>
+        <%--修改--%>
+        <%--</button>--%>
+        <i class="icon-circle-arrow-right">&nbsp;<a href="${ctx}/oa/oaNotify/form?id=${oaNotify.id}"
+                                                    style="margin-left: 2px"
+                                                    onclick="return assignTo('${oaWorkTask.title}')">指派</a></i>
+        &nbsp;
+        &nbsp;
+        <i class="icon-pencil">&nbsp;<a href="${ctx}/oa/oaNotify/delete?id=${oaNotify.id}"
+                                        style="margin-left: 2px"
+                                        onclick="return confirmx('确认要完成该任务吗？', this.href)">完成</a></i>
+
+        <%--<select name="schoolId" id="schoolId" style="width: 95%">--%>
+        <%--<option value="0">==请选择==</option>--%>
+
+        <%--<c:forEach items="${oaWorkTask.oaWorkTaskLogList}" var="oaWorkTaskLog" varStatus="vs">--%>
+        <%--<option value="${oaWorkTask.id}"--%>
+        <%--&lt;%&ndash;<c:if test="${var.name_code==schoolid}">selected</c:if> > ${var.name}</option>&ndash;%&gt;--%>
+        <%--</c:forEach>--%>
+        <%--</select>--%>
     </div>
 </div>
 
