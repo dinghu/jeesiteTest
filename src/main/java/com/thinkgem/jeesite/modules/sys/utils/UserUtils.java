@@ -73,6 +73,16 @@ public class UserUtils {
     }
 
     /**
+     * 根据ID获取用户
+     *
+     * @param roleId
+     * @return 取不到返回null
+     */
+    public static List<User> getUsersByRoleId(String roleId) {
+        return userDao.findUserByRoleId(roleId);
+    }
+
+    /**
      * 根据登录名获取用户
      *
      * @param loginName

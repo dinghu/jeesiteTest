@@ -101,7 +101,8 @@
         ou.id AS "office.primaryPerson.id",
         ou.name AS "office.primaryPerson.name",
         ou2.id AS "office.deputyPerson.id",
-        ou2.name AS "office.deputyPerson.name"<!-- ,
+        ou2.name AS "office.deputyPerson.name"
+        <!-- ,
         r.id AS "roleList.id",
         r.office_id AS "roleList.office.id",
         r.name AS "roleList.name",
@@ -204,6 +205,19 @@
 			AND a.office_id = #{office.id}
 		ORDER BY a.name
 	</select>
+
+    <!-- 查询全部用户 -->
+    <select id="findUserByRoleId" resultType="User" parameterType="java.lang.String">
+        SELECT
+        <include refid="userColumns"/>
+        FROM sys_user a
+        <include refid="userJoins"/>
+        <if test="roleId != null and roleId!= ''">
+            JOIN sys_user_role ur ON ur.user_id = a.id AND ur.role_id = #{roleId}
+        </if>
+        WHERE a.del_flag = 0
+        ORDER BY c.code, o.code, a.name
+    </select>
 
     <!-- 查询全部用户 -->
     <select id="findAllList" resultType="User">

@@ -18,11 +18,21 @@ public class OaWorkTaskLog implements Serializable {
 
     private String content;
 
+    private String mark;
+
     private Date opTime;
 
     private User fromUser;
 
     private User toUser;
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
 
     public User getFromUser() {
         return fromUser;

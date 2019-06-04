@@ -105,6 +105,14 @@
         <example>${fns:getCache(cacheName, defaultValue)}</example>
     </function>
 
+    <function>
+        <description>获取指定角色的用户列表</description>
+        <name>getUsersByRoleId</name>
+        <function-class>com.thinkgem.jeesite.modules.sys.utils.UserUtils</function-class>
+        <function-signature>java.lang.Object getUsersByRoleId(java.lang.String)</function-signature>
+        <example>${fns:getUsersByRoleId(roleId)}</example>
+    </function>
+
     <!-- DictUtils -->
     <function>
         <description>获取字典标签</description>

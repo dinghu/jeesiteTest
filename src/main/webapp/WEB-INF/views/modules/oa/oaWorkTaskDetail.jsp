@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%--<%@ include file="/WEB-INF/views/include/taglib.jsp" %>--%>
-<%@ include file="/WEB-INF/views/modules/cms/front/include/taglib.jsp" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
+<%--<%@ include file="/WEB-INF/views/modules/cms/front/include/taglib.jsp" %>--%>
 <html>
 <head>
     <title>任务详情</title>
@@ -9,37 +9,39 @@
     <script src="jquery-jbox/2.3/jquery-1.4.2.min.js"></script>
     <script src="jquery-jbox/2.3/jquery.jBox-2.3.src.js"></script>
     <script type="text/javascript">
-        function assignTo(title) {
-            var html = "<div style='padding:10px;'><span style='width: 60px;float: left'> 指派给：</span> <input type='text' id='yourname' name='yourname' /></div>"
-                + "<div style='padding:10px;'><span style='width: 60px;float: left'> 备 注：</span><input type='text' id='note' name='note' /></div>"
-            var content = {
-                state1: {
-                    content: html,
-                    buttons: {'确定': 1, '取消': 0},
-                    buttonsFocus: 0,
-                    submit: function (v, h, f) {
-                        if (v == 0) {
-                            return true; // close the window
-                        } else {
-                            if (f.yourname == '') {
-                                $.jBox.tip("请输入您的姓名。", 'error', {focusId: "yourname"}); // 关闭设置 yourname 为焦点
-                                return false;
+        function assignTo(title, id) {
+            var assigntoUrl = '${ctx}/oa/oaWorkTask/assignto?id=' + id;
+            var tarUrl = "iframe:" + assigntoUrl;
+            console.log(tarUrl);
+            top.$.jBox(tarUrl, {
+                width: 550,
+                height: 300,
+                title: title,
+                buttons: {'确定': true},
+                submit: function (v, h, f) {
+                    var data = h.find("iframe")[0].contentWindow.$("#inputForm").serialize();
+                    console.log(data);
+                    var url = "${ctx}/oa/oaWorkTask/assigntoSave";
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: data,             //获取表单数据
+                        success: function (data) {
+                            var result = JSON.parse(data); //可以将json字符串转换成json对象
+                            if (result.code == 0) {
+                                top.$.jBox.tip('保存成功');
+                                location = '${ctx}/oa/oaWorkTask/self?repage';
+                                // history.go(-1);
+                            } else {
+                                top.$.jBox.tip("保存失败:" + data.message);
                             }
-
-                            $.jBox.tip("你叫：" + f.yourname);//ajax请求
-                            $.jBox("iframe:" + '${ctx}/oa/oaWorkTask/list', {
-                                width: 900,
-                                height: 300,
-                                title: "交易明细:编号" + $(this).text(),
-                                buttons: {'关闭': true}
-                            });
                         }
-                        return false;
-                    }
+                    });
+                },
+                loaded: function (h) {
+                    $(".jbox-content", top.document).css("overflow-y", "hidden");
                 }
-            };
-
-            $.jBox(content);
+            });
             return false;
         }
     </script>
@@ -78,14 +80,17 @@
     <h4 class="span12" style="margin-top: 10px;margin-bottom: 10px">任务日志</h4>
     <div id="comment" class="span12">
         <c:forEach items="${oaWorkTask.oaWorkTaskLogList }" var="oaWorkTaskLog">
-            <div class="col-md-2">
+            <div class="col-md-2" style="margin-top: 6px">
                 <span class="name">${oaWorkTaskLog.fromUser.name}</span>
                 <span class="table" style="margin-left: 10px">${oaWorkTaskLog.content}</span>
-                <span
-                        class="time" style="margin-left: 10px;color: #999"><fmt:formatDate
-                        value="${oaWorkTaskLog.opTime}"
-                        pattern="yyyy-MM-dd HH:mm:ss"/>
+                <span class="time" style="margin-left: 10px;color: #999">
+                    <fmt:formatDate
+                            value="${oaWorkTaskLog.opTime}"
+                            pattern="yyyy-MM-dd HH:mm:ss"/>
                 </span>
+                <c:if test="${not empty oaWorkTaskLog.mark}">
+                    <span class="mark" style="margin-left: 15px;color: red">备注：&nbsp; ${oaWorkTaskLog.mark}</span>
+                </c:if>
             </div>
         </c:forEach>
     </div>
@@ -96,23 +101,30 @@
         <%--<button class="btn btn-default btn-xs btn-info" onClick="location.href='/admin/editStudent?id=${item.userid}'">--%>
         <%--修改--%>
         <%--</button>--%>
-        <i class="icon-circle-arrow-right">&nbsp;<a href="${ctx}/oa/oaNotify/form?id=${oaNotify.id}"
-                                                    style="margin-left: 2px"
-                                                    onclick="return assignTo('${oaWorkTask.title}')">指派</a></i>
-        &nbsp;
-        &nbsp;
-        <i class="icon-pencil">&nbsp;<a href="${ctx}/oa/oaNotify/delete?id=${oaNotify.id}"
-                                        style="margin-left: 2px"
-                                        onclick="return confirmx('确认要完成该任务吗？', this.href)">完成</a></i>
+        <i class="icon-circle-arrow-right">&nbsp;<a style="margin-left: 2px"
+                                                    onclick="return assignTo('${oaWorkTask.title}','${oaWorkTask.id}')">指派</a></i>
 
-        <%--<select name="schoolId" id="schoolId" style="width: 95%">--%>
-        <%--<option value="0">==请选择==</option>--%>
-
-        <%--<c:forEach items="${oaWorkTask.oaWorkTaskLogList}" var="oaWorkTaskLog" varStatus="vs">--%>
-        <%--<option value="${oaWorkTask.id}"--%>
-        <%--&lt;%&ndash;<c:if test="${var.name_code==schoolid}">selected</c:if> > ${var.name}</option>&ndash;%&gt;--%>
-        <%--</c:forEach>--%>
-        <%--</select>--%>
+        <c:if test="${oaWorkTask.status eq 0}">
+            &nbsp;
+            &nbsp;
+            <i class="icon-pencil">&nbsp;<a href="${ctx}/oa/oaWorkTask/start?id=${oaWorkTask.id}"
+                                            style="margin-left: 2px"
+                                            onclick="return confirmx('要开始该任务吗？', this.href)">开始</a></i>
+        </c:if>
+        <c:if test="${oaWorkTask.status eq 2}">
+            &nbsp;
+            &nbsp;
+            <i class="icon-pencil">&nbsp;<a href="${ctx}/oa/oaWorkTask/start?id=${oaWorkTask.id}"
+                                            style="margin-left: 2px"
+                                            onclick="return confirmx('要激活该任务吗？', this.href)">激活</a></i>
+        </c:if>
+        <c:if test="${oaWorkTask.status ne 2}">
+            &nbsp;
+            &nbsp;
+            <i class="icon-pencil">&nbsp;<a href="${ctx}/oa/oaWorkTask/finish?id=${oaWorkTask.id}"
+                                            style="margin-left: 2px"
+                                            onclick="return confirmx('确认完成该任务吗？', this.href)">完成</a></i>
+        </c:if>
     </div>
 </div>
 

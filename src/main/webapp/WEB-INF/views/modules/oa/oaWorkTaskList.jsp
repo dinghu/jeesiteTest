@@ -30,7 +30,27 @@
            method="post" class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
+    <ul class="ul-form">
+        <li><label>标题：</label>
+            <form:input path="title" htmlEscape="false" maxlength="200" class="input-medium"/>
+        </li>
+        <li><label>类型：</label>
+            <form:select path="type" class="input-medium">
+                <form:option value="" label=""/>
+                <form:options items="${fns:getDictList('oa_task_type')}" itemLabel="label" itemValue="value"
+                              htmlEscape="false"/>
+            </form:select>
+        </li>
+        <li><label>状态：</label>
+            <form:radiobuttons path="status" items="${fns:getDictList('oa_task_status')}" itemLabel="label"
+                               itemValue="value" htmlEscape="false"/>
+        </li>
+
+        <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+        <li class="clearfix"></li>
+    </ul>
 </form:form>
+
 <sys:message content="${message}"/>
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
@@ -55,7 +75,17 @@
                     ${fns:getDictLabel(oaWorkTask.type, 'oa_task_type', '')}
             </td>
             <td>
-                进行中
+                <c:choose>
+                    <c:when test="${oaWorkTask.status eq '1'}">
+                        <span style="color: red">进行中</span>
+                    </c:when>
+                    <c:when test="${oaWorkTask.status eq '2'}">
+                        <span style="color: green">已完成</span>
+                    </c:when>
+                    <c:otherwise>
+                        未开始
+                    </c:otherwise>
+                </c:choose>
             </td>
             <td>
                 <fmt:formatDate value="${oaWorkTask.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
