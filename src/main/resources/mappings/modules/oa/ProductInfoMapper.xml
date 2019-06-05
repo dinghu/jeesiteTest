@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thinkgem.jeesite.modules.oa.dao.ProductInfoDao">
+    <resultMap id="BaseResultMap" type="com.thinkgem.jeesite.modules.oa.entity.ProductInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="create_uid" property="createUid" jdbcType="CHAR"/>
+        <result column="sku" property="sku" jdbcType="CHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="keywords" property="keywords" jdbcType="VARCHAR"/>
+        <result column="images" property="images" jdbcType="VARCHAR"/>
+        <result column="color" property="color" jdbcType="VARCHAR"/>
+        <result column="yangpin" property="yangpin" jdbcType="INTEGER"/>
+        <result column="isSameToYangpin" property="issametoyangpin" jdbcType="VARCHAR"/>
+        <result column="packing_requirements" property="packingRequirements" jdbcType="VARCHAR"/>
+        <result column="warehouse_packaging_requirements" property="warehousePackagingRequirements" jdbcType="VARCHAR"/>
+        <result column="check_points" property="checkPoints" jdbcType="VARCHAR"/>
+        <result column="single_packingway" property="singlePackingway" jdbcType="VARCHAR"/>
+        <result column="sale_groupway" property="saleGroupway" jdbcType="VARCHAR"/>
+        <result column="strengths_weaknesses" property="strengthsWeaknesses" jdbcType="VARCHAR"/>
+        <result column="kandeng_advises" property="kandengAdvises" jdbcType="VARCHAR"/>
+        <result column="function_params" property="functionParams" jdbcType="VARCHAR"/>
+        <result column="parts" property="parts" jdbcType="VARCHAR"/>
+        <result column="link" property="link" jdbcType="VARCHAR"/>
+        <result column="note" property="note" jdbcType="VARCHAR"/>
+        <result column="image_production_requirements" property="imageProductionRequirements" jdbcType="VARCHAR"/>
+        <result column="others" property="others" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, pid, create_uid, sku, name, keywords, images, color, yangpin, isSameToYangpin, 
+    packing_requirements, warehouse_packaging_requirements, check_points, single_packingway, 
+    sale_groupway, strengths_weaknesses, kandeng_advises, function_params, parts, link, 
+    note, image_production_requirements, others, create_time, update_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from shop_product_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shop_product_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.oa.entity.ProductInfo">
+    insert into shop_product_info (id, pid, create_uid, 
+      sku, name, keywords, images, 
+      color, yangpin, isSameToYangpin, 
+      packing_requirements, warehouse_packaging_requirements, 
+      check_points, single_packingway, sale_groupway, 
+      strengths_weaknesses, kandeng_advises, function_params, 
+      parts, link, note, 
+      image_production_requirements, others, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{createUid,jdbcType=CHAR}, 
+      #{sku,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, 
+      #{color,jdbcType=VARCHAR}, #{yangpin,jdbcType=INTEGER}, #{issametoyangpin,jdbcType=VARCHAR}, 
+      #{packingRequirements,jdbcType=VARCHAR}, #{warehousePackagingRequirements,jdbcType=VARCHAR}, 
+      #{checkPoints,jdbcType=VARCHAR}, #{singlePackingway,jdbcType=VARCHAR}, #{saleGroupway,jdbcType=VARCHAR}, 
+      #{strengthsWeaknesses,jdbcType=VARCHAR}, #{kandengAdvises,jdbcType=VARCHAR}, #{functionParams,jdbcType=VARCHAR}, 
+      #{parts,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{imageProductionRequirements,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.thinkgem.jeesite.modules.oa.entity.ProductInfo">
+        insert into shop_product_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="createUid != null">
+                create_uid,
+            </if>
+            <if test="sku != null">
+                sku,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="keywords != null">
+                keywords,
+            </if>
+            <if test="images != null">
+                images,
+            </if>
+            <if test="color != null">
+                color,
+            </if>
+            <if test="yangpin != null">
+                yangpin,
+            </if>
+            <if test="issametoyangpin != null">
+                isSameToYangpin,
+            </if>
+            <if test="packingRequirements != null">
+                packing_requirements,
+            </if>
+            <if test="warehousePackagingRequirements != null">
+                warehouse_packaging_requirements,
+            </if>
+            <if test="checkPoints != null">
+                check_points,
+            </if>
+            <if test="singlePackingway != null">
+                single_packingway,
+            </if>
+            <if test="saleGroupway != null">
+                sale_groupway,
+            </if>
+            <if test="strengthsWeaknesses != null">
+                strengths_weaknesses,
+            </if>
+            <if test="kandengAdvises != null">
+                kandeng_advises,
+            </if>
+            <if test="functionParams != null">
+                function_params,
+            </if>
+            <if test="parts != null">
+                parts,
+            </if>
+            <if test="link != null">
+                link,
+            </if>
+            <if test="note != null">
+                note,
+            </if>
+            <if test="imageProductionRequirements != null">
+                image_production_requirements,
+            </if>
+            <if test="others != null">
+                others,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="createUid != null">
+                #{createUid,jdbcType=CHAR},
+            </if>
+            <if test="sku != null">
+                #{sku,jdbcType=CHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="keywords != null">
+                #{keywords,jdbcType=VARCHAR},
+            </if>
+            <if test="images != null">
+                #{images,jdbcType=VARCHAR},
+            </if>
+            <if test="color != null">
+                #{color,jdbcType=VARCHAR},
+            </if>
+            <if test="yangpin != null">
+                #{yangpin,jdbcType=INTEGER},
+            </if>
+            <if test="issametoyangpin != null">
+                #{issametoyangpin,jdbcType=VARCHAR},
+            </if>
+            <if test="packingRequirements != null">
+                #{packingRequirements,jdbcType=VARCHAR},
+            </if>
+            <if test="warehousePackagingRequirements != null">
+                #{warehousePackagingRequirements,jdbcType=VARCHAR},
+            </if>
+            <if test="checkPoints != null">
+                #{checkPoints,jdbcType=VARCHAR},
+            </if>
+            <if test="singlePackingway != null">
+                #{singlePackingway,jdbcType=VARCHAR},
+            </if>
+            <if test="saleGroupway != null">
+                #{saleGroupway,jdbcType=VARCHAR},
+            </if>
+            <if test="strengthsWeaknesses != null">
+                #{strengthsWeaknesses,jdbcType=VARCHAR},
+            </if>
+            <if test="kandengAdvises != null">
+                #{kandengAdvises,jdbcType=VARCHAR},
+            </if>
+            <if test="functionParams != null">
+                #{functionParams,jdbcType=VARCHAR},
+            </if>
+            <if test="parts != null">
+                #{parts,jdbcType=VARCHAR},
+            </if>
+            <if test="link != null">
+                #{link,jdbcType=VARCHAR},
+            </if>
+            <if test="note != null">
+                #{note,jdbcType=VARCHAR},
+            </if>
+            <if test="imageProductionRequirements != null">
+                #{imageProductionRequirements,jdbcType=VARCHAR},
+            </if>
+            <if test="others != null">
+                #{others,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.thinkgem.jeesite.modules.oa.entity.ProductInfo">
+        update shop_product_info
+        <set>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="createUid != null">
+                create_uid = #{createUid,jdbcType=CHAR},
+            </if>
+            <if test="sku != null">
+                sku = #{sku,jdbcType=CHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="keywords != null">
+                keywords = #{keywords,jdbcType=VARCHAR},
+            </if>
+            <if test="images != null">
+                images = #{images,jdbcType=VARCHAR},
+            </if>
+            <if test="color != null">
+                color = #{color,jdbcType=VARCHAR},
+            </if>
+            <if test="yangpin != null">
+                yangpin = #{yangpin,jdbcType=INTEGER},
+            </if>
+            <if test="issametoyangpin != null">
+                isSameToYangpin = #{issametoyangpin,jdbcType=VARCHAR},
+            </if>
+            <if test="packingRequirements != null">
+                packing_requirements = #{packingRequirements,jdbcType=VARCHAR},
+            </if>
+            <if test="warehousePackagingRequirements != null">
+                warehouse_packaging_requirements = #{warehousePackagingRequirements,jdbcType=VARCHAR},
+            </if>
+            <if test="checkPoints != null">
+                check_points = #{checkPoints,jdbcType=VARCHAR},
+            </if>
+            <if test="singlePackingway != null">
+                single_packingway = #{singlePackingway,jdbcType=VARCHAR},
+            </if>
+            <if test="saleGroupway != null">
+                sale_groupway = #{saleGroupway,jdbcType=VARCHAR},
+            </if>
+            <if test="strengthsWeaknesses != null">
+                strengths_weaknesses = #{strengthsWeaknesses,jdbcType=VARCHAR},
+            </if>
+            <if test="kandengAdvises != null">
+                kandeng_advises = #{kandengAdvises,jdbcType=VARCHAR},
+            </if>
+            <if test="functionParams != null">
+                function_params = #{functionParams,jdbcType=VARCHAR},
+            </if>
+            <if test="parts != null">
+                parts = #{parts,jdbcType=VARCHAR},
+            </if>
+            <if test="link != null">
+                link = #{link,jdbcType=VARCHAR},
+            </if>
+            <if test="note != null">
+                note = #{note,jdbcType=VARCHAR},
+            </if>
+            <if test="imageProductionRequirements != null">
+                image_production_requirements = #{imageProductionRequirements,jdbcType=VARCHAR},
+            </if>
+            <if test="others != null">
+                others = #{others,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.thinkgem.jeesite.modules.oa.entity.ProductInfo">
+    update shop_product_info
+    set pid = #{pid,jdbcType=INTEGER},
+      create_uid = #{createUid,jdbcType=CHAR},
+      sku = #{sku,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      yangpin = #{yangpin,jdbcType=INTEGER},
+      isSameToYangpin = #{issametoyangpin,jdbcType=VARCHAR},
+      packing_requirements = #{packingRequirements,jdbcType=VARCHAR},
+      warehouse_packaging_requirements = #{warehousePackagingRequirements,jdbcType=VARCHAR},
+      check_points = #{checkPoints,jdbcType=VARCHAR},
+      single_packingway = #{singlePackingway,jdbcType=VARCHAR},
+      sale_groupway = #{saleGroupway,jdbcType=VARCHAR},
+      strengths_weaknesses = #{strengthsWeaknesses,jdbcType=VARCHAR},
+      kandeng_advises = #{kandengAdvises,jdbcType=VARCHAR},
+      function_params = #{functionParams,jdbcType=VARCHAR},
+      parts = #{parts,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      image_production_requirements = #{imageProductionRequirements,jdbcType=VARCHAR},
+      others = #{others,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="findByPageAndKeywords" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shop_product_info
+        <if test="keywords != null and keywords != ''">
+            where (name like CONCAT('%',#{keywords},'%') OR
+            keywords like CONCAT('%',#{keywords},'%') OR sku like CONCAT('%',#{keywords},'%'))
+        </if>
+        <if test="pageQuery != null">
+            order by ${pageQuery.orderBy} ${pageQuery.orderType} limit #{pageQuery.start} , #{pageQuery.pageSize}
+        </if>
+    </select>
+
+    <select id="getTotalCountByKeywords" resultType="java.lang.Integer">
+        select count(*) from shop_product_info
+        <if test="keywords != null and keywords != ''">
+            where (name like CONCAT('%',CONCAT('%',#{keywords},'%'),'%') OR
+            keywords like CONCAT('%',#{keywords},'%') OR sku like CONCAT('%',#{keywords},'%'))
+        </if>
+    </select>
+
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        select count(*) from shop_product_info
+        <include refid="FilterMapper.parseFilterRules"/>
+    </select>
+</mapper>
