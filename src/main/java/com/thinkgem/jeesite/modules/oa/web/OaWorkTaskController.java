@@ -1,6 +1,5 @@
 package com.thinkgem.jeesite.modules.oa.web;
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.thinkgem.jeesite.common.mapper.JsonMapper;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.utils.StringUtils;
@@ -12,7 +11,6 @@ import com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog;
 import com.thinkgem.jeesite.modules.oa.service.OaWorkTaskService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
-import org.activiti.editor.language.json.converter.util.JsonConverterUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

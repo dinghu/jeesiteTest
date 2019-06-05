@@ -31,7 +31,7 @@ public class BaseService<D extends BaseDao<T, KT>, T, KT> {
     }
 
     public int updateByPrimaryKeySelective(T record) {
-        return dao.insertSelective(record);
+        return dao.updateByPrimaryKeySelective(record);
     }
 
     public int updateByPrimaryKey(T record) {
