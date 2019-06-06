@@ -34,8 +34,8 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.thinkgem.jeesite.modules.oa.dao" targetProject="src/main/java"/>
 
         <!-- 配置表信息 -->
-        <table schema="shop_product_Info" tableName="shop_product_Info"
-               domainObjectName="ProductInfo" enableCountByExample="false"
+        <table schema="shop_product" tableName="shop_product"
+               domainObjectName="Product" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>

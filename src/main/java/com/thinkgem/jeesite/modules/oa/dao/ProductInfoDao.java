@@ -7,9 +7,10 @@ import com.thinkgem.jeesite.modules.oa.entity.ProductInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
 @MyBatisDao
 public interface ProductInfoDao extends IntegerBaseDao<ProductInfo> {
-    List<ProductInfo> findByPageAndKeywords(@Param("keywords") String keywords,@Param("pageQuery")  PageQuery pageQuery);
+    List<ProductInfo> findByPageAndKeywords(@Param("keywords") String keywords, @Param("pageQuery") PageQuery pageQuery);
 
     int getTotalCountByKeywords(@Param("keywords") String keywords);
 }

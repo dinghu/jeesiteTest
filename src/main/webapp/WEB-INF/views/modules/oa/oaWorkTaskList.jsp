@@ -16,6 +16,29 @@
             return false;
         }
     </script>
+
+    <style type="text/css">
+        .oaTaskTitlecls > a:link {
+            color: #2fa4e7;
+            text-decoration: none;
+        }
+
+        .oaTaskTitlecls > a:visited {
+            color: #551A8B;
+            text-decoration: none;
+        }
+
+        .oaTaskTitlecls > a:hover {
+            color: #ff0000;
+            text-decoration: none;
+        }
+
+        .oaTaskTitlecls > a:active {
+            color: #2fa4e7;
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 <ul class="nav nav-tabs">
@@ -68,9 +91,9 @@
     <tbody>
     <c:forEach items="${page.list}" var="oaWorkTask">
         <tr>
-            <td><a href="${ctx}/oa/oaWorkTask/${requestScope.oaWorkTask.self?'view':'form'}?id=${oaWorkTask.id}">
-                    ${fns:abbr(oaWorkTask.title,50)}
-            </a></td>
+            <td class="oaTaskTitlecls">
+                <a href="${ctx}/oa/oaWorkTask/view?id=${oaWorkTask.id}">${fns:abbr(oaWorkTask.title,50)}</a>
+            </td>
             <td>
                     ${fns:getDictLabel(oaWorkTask.type, 'oa_task_type', '')}
             </td>
@@ -80,7 +103,8 @@
                         <span style="color: red">进行中</span>
                     </c:when>
                     <c:when test="${oaWorkTask.status eq '2'}">
-                        <span style="color: green">已完成</span>
+                        <span >已完成</span>
+                        <%--style="color: green"--%>
                     </c:when>
                     <c:otherwise>
                         未开始
