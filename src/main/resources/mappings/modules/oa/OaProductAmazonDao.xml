@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.oa.dao.OaProductAmazonDao">
+    
+	<sql id="oaProductAmazonColumns">
+		a.id AS "id",
+		a.create_by AS "create_by",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.create_date AS "create_date",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.sku AS "sku",
+		a.name AS "name",
+		a.chengben AS "chengben",
+		a.maoli20 AS "maoli20",
+		a.advise_price AS "advise_price",
+		a.nitiaojia AS "nitiaojia"
+	</sql>
+	
+	<sql id="oaProductAmazonJoins">
+	</sql>
+    
+	<select id="get" resultType="OaProductAmazon">
+		SELECT 
+			<include refid="oaProductAmazonColumns"/>
+		FROM oa_product_amazon a
+		<include refid="oaProductAmazonJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="OaProductAmazon">
+		SELECT 
+			<include refid="oaProductAmazonColumns"/>
+		FROM oa_product_amazon a
+		<include refid="oaProductAmazonJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="sku != null and sku != ''">
+				AND a.sku LIKE 
+					<if test="dbName == 'oracle'">'%'||#{sku}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{sku}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{sku},'%')</if>
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="OaProductAmazon">
+		SELECT 
+			<include refid="oaProductAmazonColumns"/>
+		FROM oa_product_amazon a
+		<include refid="oaProductAmazonJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO oa_product_amazon(
+			id,
+			create_by,
+			update_by,
+			update_date,
+			create_date,
+			remarks,
+			del_flag,
+			sku,
+			name,
+			chengben,
+			maoli20,
+			advise_price,
+			nitiaojia
+		) VALUES (
+			#{id},
+			#{create_by},
+			#{updateBy.id},
+			#{updateDate},
+			#{create_date},
+			#{remarks},
+			#{delFlag},
+			#{sku},
+			#{name},
+			#{chengben},
+			#{maoli20},
+			#{advise_price},
+			#{nitiaojia}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE oa_product_amazon SET 	
+			remarks = #{remarks},
+			sku = #{sku},
+			name = #{name},
+			chengben = #{chengben},
+			maoli20 = #{maoli20},
+			advise_price = #{advise_price},
+			nitiaojia = #{nitiaojia}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE oa_product_amazon SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -44,10 +44,28 @@ public class OaWorkTaskController extends BaseController {
     @RequestMapping(value = {"list"})
     public String list(OaWorkTask oaWorkTask, HttpServletRequest request, HttpServletResponse response, Model model) {
         oaWorkTask.setSelf(false);
+        String title = request.getParameter("title");
+        String type = request.getParameter("type");
+        String status = request.getParameter("status");
         Page<OaWorkTask> page = new Page<OaWorkTask>(request, response);
-        oaWorkTask.setPage(page);
-        page.setCount(workTaskService.getWorkTaskTotalCount());
-        page.setList(workTaskService.findByPageSortByTime(page.getPageNo()));
+//        oaWorkTask.setPage(page);
+//        page.setCount(workTaskService.getWorkTaskTotalCount());
+//        page.setList(workTaskService.findByPageSortByTime(page.getPageNo()));
+        Integer iType = null;
+        Integer iStatus = null;
+        try {
+            if (StringUtils.isNumeric(type)) {
+                iType = Integer.valueOf(type);
+            }
+            if (StringUtils.isNumeric(status)) {
+                iStatus = Integer.valueOf(status);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        page.setCount(workTaskService.countUserTask(null, title, iType, iStatus));
+        page.setList(workTaskService.findUserTask(null, page.getPageNo(), title, iType, iStatus));
         model.addAttribute("page", page);
         return "modules/oa/oaWorkTaskList";
     }

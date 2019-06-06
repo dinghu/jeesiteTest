@@ -29,7 +29,7 @@
         <setting name="defaultExecutorType" value="SIMPLE"/>
 
         <!-- 使用驼峰命名法转换字段。 -->
-        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--<setting name="mapUnderscoreToCamelCase" value="true"/>-->
 
         <!-- 设置本地缓存范围 session:就会有数据的共享  statement:语句范围 (这样就不会有数据的共享 ) defalut:session -->
         <setting name="localCacheScope" value="SESSION"/>
