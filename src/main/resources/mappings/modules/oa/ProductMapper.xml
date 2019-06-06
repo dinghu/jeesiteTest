@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thinkgem.jeesite.modules.oa.dao.ProductDao">
+    <resultMap id="BaseResultMap" type="com.thinkgem.jeesite.modules.oa.entity.Product">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="create_uid" property="createUid" jdbcType="CHAR"/>
+        <result column="sku" property="sku" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="packing_volume" property="packingVolume" jdbcType="INTEGER"/>
+        <result column="packing_amout" property="packingAmout" jdbcType="INTEGER"/>
+        <result column="gross_weight" property="grossWeight" jdbcType="DOUBLE"/>
+        <result column="single_packing_size" property="singlePackingSize" jdbcType="INTEGER"/>
+        <result column="price" property="price" jdbcType="DOUBLE"/>
+        <result column="domestic_reight" property="domesticReight" jdbcType="DOUBLE"/>
+        <result column="packing_price" property="packingPrice" jdbcType="DOUBLE"/>
+        <result column="international_shipping" property="internationalShipping" jdbcType="DOUBLE"/>
+        <result column="rate" property="rate" jdbcType="DOUBLE"/>
+        <result column="hs_code" property="hsCode" jdbcType="VARCHAR"/>
+        <result column="tariff" property="tariff" jdbcType="VARCHAR"/>
+        <result column="local_freight" property="localFreight" jdbcType="DOUBLE"/>
+        <result column="ebay_cost" property="ebayCost" jdbcType="DOUBLE"/>
+        <result column="ebay_20p_price" property="ebay20pPrice" jdbcType="DOUBLE"/>
+        <result column="amazon_cost" property="amazonCost" jdbcType="DOUBLE"/>
+        <result column="amazon_20p_price" property="amazon20pPrice" jdbcType="DOUBLE"/>
+        <result column="advice_price" property="advicePrice" jdbcType="DOUBLE"/>
+        <result column="nitiaojia" property="nitiaojia" jdbcType="DOUBLE"/>
+        <result column="manufacturer_link" property="manufacturerLink" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, create_uid, sku, name, packing_volume, packing_amout, gross_weight, single_packing_size, 
+    price, domestic_reight, packing_price, international_shipping, rate, hs_code, 
+    tariff, local_freight, ebay_cost, ebay_20p_price, amazon_cost, amazon_20p_price, 
+    advice_price, nitiaojia, manufacturer_link, create_time, update_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from shop_product
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shop_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.oa.entity.Product">
+    insert into shop_product (id, create_uid, sku, 
+      name, packing_volume, packing_amout, 
+      gross_weight, single_packing_size, price, 
+      domestic_reight, packing_price, international_shipping, 
+      rate, hs_code, tariff, 
+      local_freight, ebay_cost, ebay_20p_price, 
+      amazon_cost, amazon_20p_price, advice_price, 
+      nitiaojia, manufacturer_link, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{createUid,jdbcType=CHAR}, #{sku,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{packingVolume,jdbcType=INTEGER}, #{packingAmout,jdbcType=INTEGER}, 
+      #{grossWeight,jdbcType=DOUBLE}, #{singlePackingSize,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
+      #{domesticReight,jdbcType=DOUBLE}, #{packingPrice,jdbcType=DOUBLE}, #{internationalShipping,jdbcType=DOUBLE}, 
+      #{rate,jdbcType=DOUBLE}, #{hsCode,jdbcType=VARCHAR}, #{tariff,jdbcType=VARCHAR}, 
+      #{localFreight,jdbcType=DOUBLE}, #{ebayCost,jdbcType=DOUBLE}, #{ebay20pPrice,jdbcType=DOUBLE}, 
+      #{amazonCost,jdbcType=DOUBLE}, #{amazon20pPrice,jdbcType=DOUBLE}, #{advicePrice,jdbcType=DOUBLE}, 
+      #{nitiaojia,jdbcType=DOUBLE}, #{manufacturerLink,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.thinkgem.jeesite.modules.oa.entity.Product">
+        insert into shop_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createUid != null">
+                create_uid,
+            </if>
+            <if test="sku != null">
+                sku,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="packingVolume != null">
+                packing_volume,
+            </if>
+            <if test="packingAmout != null">
+                packing_amout,
+            </if>
+            <if test="grossWeight != null">
+                gross_weight,
+            </if>
+            <if test="singlePackingSize != null">
+                single_packing_size,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="domesticReight != null">
+                domestic_reight,
+            </if>
+            <if test="packingPrice != null">
+                packing_price,
+            </if>
+            <if test="internationalShipping != null">
+                international_shipping,
+            </if>
+            <if test="rate != null">
+                rate,
+            </if>
+            <if test="hsCode != null">
+                hs_code,
+            </if>
+            <if test="tariff != null">
+                tariff,
+            </if>
+            <if test="localFreight != null">
+                local_freight,
+            </if>
+            <if test="ebayCost != null">
+                ebay_cost,
+            </if>
+            <if test="ebay20pPrice != null">
+                ebay_20p_price,
+            </if>
+            <if test="amazonCost != null">
+                amazon_cost,
+            </if>
+            <if test="amazon20pPrice != null">
+                amazon_20p_price,
+            </if>
+            <if test="advicePrice != null">
+                advice_price,
+            </if>
+            <if test="nitiaojia != null">
+                nitiaojia,
+            </if>
+            <if test="manufacturerLink != null">
+                manufacturer_link,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="createUid != null">
+                #{createUid,jdbcType=CHAR},
+            </if>
+            <if test="sku != null">
+                #{sku,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="packingVolume != null">
+                #{packingVolume,jdbcType=INTEGER},
+            </if>
+            <if test="packingAmout != null">
+                #{packingAmout,jdbcType=INTEGER},
+            </if>
+            <if test="grossWeight != null">
+                #{grossWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="singlePackingSize != null">
+                #{singlePackingSize,jdbcType=INTEGER},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="domesticReight != null">
+                #{domesticReight,jdbcType=DOUBLE},
+            </if>
+            <if test="packingPrice != null">
+                #{packingPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="internationalShipping != null">
+                #{internationalShipping,jdbcType=DOUBLE},
+            </if>
+            <if test="rate != null">
+                #{rate,jdbcType=DOUBLE},
+            </if>
+            <if test="hsCode != null">
+                #{hsCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tariff != null">
+                #{tariff,jdbcType=VARCHAR},
+            </if>
+            <if test="localFreight != null">
+                #{localFreight,jdbcType=DOUBLE},
+            </if>
+            <if test="ebayCost != null">
+                #{ebayCost,jdbcType=DOUBLE},
+            </if>
+            <if test="ebay20pPrice != null">
+                #{ebay20pPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="amazonCost != null">
+                #{amazonCost,jdbcType=DOUBLE},
+            </if>
+            <if test="amazon20pPrice != null">
+                #{amazon20pPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="advicePrice != null">
+                #{advicePrice,jdbcType=DOUBLE},
+            </if>
+            <if test="nitiaojia != null">
+                #{nitiaojia,jdbcType=DOUBLE},
+            </if>
+            <if test="manufacturerLink != null">
+                #{manufacturerLink,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.thinkgem.jeesite.modules.oa.entity.Product">
+        update shop_product
+        <set>
+            <if test="createUid != null">
+                create_uid = #{createUid,jdbcType=CHAR},
+            </if>
+            <if test="sku != null">
+                sku = #{sku,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="packingVolume != null">
+                packing_volume = #{packingVolume,jdbcType=INTEGER},
+            </if>
+            <if test="packingAmout != null">
+                packing_amout = #{packingAmout,jdbcType=INTEGER},
+            </if>
+            <if test="grossWeight != null">
+                gross_weight = #{grossWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="singlePackingSize != null">
+                single_packing_size = #{singlePackingSize,jdbcType=INTEGER},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="domesticReight != null">
+                domestic_reight = #{domesticReight,jdbcType=DOUBLE},
+            </if>
+            <if test="packingPrice != null">
+                packing_price = #{packingPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="internationalShipping != null">
+                international_shipping = #{internationalShipping,jdbcType=DOUBLE},
+            </if>
+            <if test="rate != null">
+                rate = #{rate,jdbcType=DOUBLE},
+            </if>
+            <if test="hsCode != null">
+                hs_code = #{hsCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tariff != null">
+                tariff = #{tariff,jdbcType=VARCHAR},
+            </if>
+            <if test="localFreight != null">
+                local_freight = #{localFreight,jdbcType=DOUBLE},
+            </if>
+            <if test="ebayCost != null">
+                ebay_cost = #{ebayCost,jdbcType=DOUBLE},
+            </if>
+            <if test="ebay20pPrice != null">
+                ebay_20p_price = #{ebay20pPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="amazonCost != null">
+                amazon_cost = #{amazonCost,jdbcType=DOUBLE},
+            </if>
+            <if test="amazon20pPrice != null">
+                amazon_20p_price = #{amazon20pPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="advicePrice != null">
+                advice_price = #{advicePrice,jdbcType=DOUBLE},
+            </if>
+            <if test="nitiaojia != null">
+                nitiaojia = #{nitiaojia,jdbcType=DOUBLE},
+            </if>
+            <if test="manufacturerLink != null">
+                manufacturer_link = #{manufacturerLink,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.thinkgem.jeesite.modules.oa.entity.Product">
+    update shop_product
+    set create_uid = #{createUid,jdbcType=CHAR},
+      sku = #{sku,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      packing_volume = #{packingVolume,jdbcType=INTEGER},
+      packing_amout = #{packingAmout,jdbcType=INTEGER},
+      gross_weight = #{grossWeight,jdbcType=DOUBLE},
+      single_packing_size = #{singlePackingSize,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      domestic_reight = #{domesticReight,jdbcType=DOUBLE},
+      packing_price = #{packingPrice,jdbcType=DOUBLE},
+      international_shipping = #{internationalShipping,jdbcType=DOUBLE},
+      rate = #{rate,jdbcType=DOUBLE},
+      hs_code = #{hsCode,jdbcType=VARCHAR},
+      tariff = #{tariff,jdbcType=VARCHAR},
+      local_freight = #{localFreight,jdbcType=DOUBLE},
+      ebay_cost = #{ebayCost,jdbcType=DOUBLE},
+      ebay_20p_price = #{ebay20pPrice,jdbcType=DOUBLE},
+      amazon_cost = #{amazonCost,jdbcType=DOUBLE},
+      amazon_20p_price = #{amazon20pPrice,jdbcType=DOUBLE},
+      advice_price = #{advicePrice,jdbcType=DOUBLE},
+      nitiaojia = #{nitiaojia,jdbcType=DOUBLE},
+      manufacturer_link = #{manufacturerLink,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="getTotalCountByKeywords" resultType="java.lang.Integer">
+        select count(*) from shop_product
+        <if test="keywords != null and keywords != ''">
+            where (name like CONCAT('%',CONCAT('%',#{keywords},'%'),'%')  OR sku like CONCAT('%',#{keywords},'%'))
+        </if>
+    </select>
+
+    <select id="findByPageAndKeywords" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shop_product
+        <if test="keywords != null and keywords != ''">
+            where (name like CONCAT('%',#{keywords},'%')  OR sku like CONCAT('%',#{keywords},'%'))
+        </if>
+        <if test="pageQuery != null">
+            order by ${pageQuery.orderBy} ${pageQuery.orderType} limit #{pageQuery.start} , #{pageQuery.pageSize}
+        </if>
+    </select>
+</mapper>
