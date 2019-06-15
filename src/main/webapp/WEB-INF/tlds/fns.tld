@@ -209,6 +209,16 @@
         <function-signature>boolean endsWith(java.lang.CharSequence, java.lang.CharSequence)</function-signature>
         <example>${fns:endsWith(str,suffix)}</example>
     </function>
+
+    <function>
+        <description>去掉指定的字符</description>
+        <name>replace</name>
+        <function-class>com.thinkgem.jeesite.common.utils.StringUtils</function-class>
+        <function-signature>java.lang.String replace(java.lang.String,java.lang.CharSequence, java.lang.CharSequence)
+        </function-signature>
+        <example>${fns:replace(str,suffix)}</example>
+    </function>
+
     <function>
         <description>缩写字符串，超过最大宽度用“...”表示</description>
         <name>abbr</name>

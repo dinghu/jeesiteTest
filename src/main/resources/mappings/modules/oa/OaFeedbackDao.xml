@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.oa.dao.OaFeedbackDao">
+
+    <sql id="oaFeedbackColumns">
+		a.id AS "id",
+		a.create_by AS "createBy.id",
+		u.name AS "createBy.name",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.office_id AS "officeInfo.id",
+		o8.name AS "officeInfo.name",
+		a.sku AS "sku",
+		a.link AS "link",
+		a.content AS "content",
+		a.buyerinfo AS "buyerinfo",
+		a.images AS "images",
+		a.deal_result AS "dealResult",
+		a.reson AS "reson",
+		a.linkmaybe AS "linkmaybe",
+		a.solve_by AS "solveBy.id",
+		u1.name AS "solveBy.name",
+		a.deal_way AS "dealWay"
+	</sql>
+
+    <sql id="oaFeedbackJoins">
+		LEFT JOIN sys_office o8 ON o8.id = a.office_id
+		LEFT JOIN sys_user u ON u.id = u.create_by
+		LEFT JOIN sys_user u1 ON u1.id = a.solve_by
+	</sql>
+
+    <select id="get" resultType="OaFeedback">
+        SELECT
+        <include refid="oaFeedbackColumns"/>
+        FROM oa_feedback a
+        <include refid="oaFeedbackJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="OaFeedback">
+        SELECT
+        <include refid="oaFeedbackColumns"/>
+        FROM oa_feedback a
+        <include refid="oaFeedbackJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="createBy != null and createBy.id != null and createBy.id != ''">
+                AND a.create_by LIKE
+                <if test="dbName == 'oracle'">'%'||#{createBy.id}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{createBy.id}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{createBy.id},'%')</if>
+            </if>
+            <if test="officeInfo != null and officeInfo != ''">
+                AND a.office_id = #{officeInfo.id}
+            </if>
+            <if test="sku != null and sku != ''">
+                AND a.sku = #{sku}
+            </if>
+            <if test="content != null and content != ''">
+                AND a.content LIKE
+                <if test="dbName == 'oracle'">'%'||#{content}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{content}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{content},'%')</if>
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findAllList" resultType="OaFeedback">
+        SELECT
+        <include refid="oaFeedbackColumns"/>
+        FROM oa_feedback a
+        <include refid="oaFeedbackJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <insert id="insert">
+		INSERT INTO oa_feedback(
+			id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			office_id,
+			sku,
+			link,
+			content,
+			buyerinfo,
+			images,
+			deal_result,
+			reson,
+			linkmaybe,
+			solve_by,
+			deal_way
+		) VALUES (
+			#{id},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{officeInfo.id},
+			#{sku},
+			#{link},
+			#{content},
+			#{buyerinfo},
+			#{images},
+			#{dealResult},
+			#{reson},
+			#{linkmaybe},
+			#{solveBy.id},
+			#{dealWay}
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE oa_feedback SET 	
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			office_id = #{officeInfo.id},
+			sku = #{sku},
+			link = #{link},
+			content = #{content},
+			buyerinfo = #{buyerinfo},
+			images = #{images},
+			deal_result = #{dealResult},
+			reson = #{reson},
+			linkmaybe = #{linkmaybe},
+			solve_by = #{solveBy.id},
+			deal_way = #{dealWay}
+		WHERE id = #{id}
+	</update>
+
+    <update id="delete">
+		UPDATE oa_feedback SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+
+</mapper>

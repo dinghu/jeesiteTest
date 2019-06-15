@@ -406,4 +406,8 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return fileName;
     }
 
+    public static String replace(String src,CharSequence target, CharSequence replacement) {
+        return src.replace(target,replacement);
+    }
+
 }
