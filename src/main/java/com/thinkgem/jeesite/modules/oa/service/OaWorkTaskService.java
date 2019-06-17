@@ -22,6 +22,7 @@ public class OaWorkTaskService extends StringKeyBaseService<OaWorkTaskDao, OaWor
 
     private FilterRuleBuilder createFilterRuleBuilder(String uid, String title, Integer type, Integer status) {
         FilterRuleBuilder filterRuleBuilder = FilterRuleBuilder.newBuilder();
+
         if (StringUtils.isNotBlank(title)) {
             filterRuleBuilder.key("title").like().value(title);
         }
