@@ -46,11 +46,11 @@
             <p>
                 <c:if test="${fns:endsWith(oaFeedback.images,'jpg' )}">
                     <img src='${fns:replace(oaFeedback.images,"|" ,"" )}'
-                         style="width: 60px;height: 60px">
+                         style="max-width: 600px;max-height: 600px">
                 </c:if>
                 <c:if test="${fns:endsWith(oaFeedback.images,'png' )}">
                     <img src='${fns:replace(oaFeedback.images,"|" ,"" )}'
-                         style="width: 60px;height: 60px">
+                         style="max-width: 600px;max-height: 600px">
                 </c:if>
 
 
