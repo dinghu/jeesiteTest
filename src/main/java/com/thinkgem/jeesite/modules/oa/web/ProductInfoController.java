@@ -7,7 +7,7 @@ import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
 import com.thinkgem.jeesite.common.web.BaseController;
-import com.thinkgem.jeesite.modules.oa.constant.WorkLogUtils;
+import com.thinkgem.jeesite.modules.oa.utils.WorkLogUtils;
 import com.thinkgem.jeesite.modules.oa.entity.ProductInfo;
 import com.thinkgem.jeesite.modules.oa.service.ProductInfoService;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;

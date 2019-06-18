@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.thinkgem.jeesite.modules.oa.constant.WorkLogUtils;
+import com.thinkgem.jeesite.modules.oa.utils.WorkLogUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.web.util.WebUtils;

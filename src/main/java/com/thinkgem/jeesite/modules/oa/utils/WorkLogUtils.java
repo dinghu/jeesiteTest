@@ -1,12 +1,11 @@
-package com.thinkgem.jeesite.modules.oa.constant;
+package com.thinkgem.jeesite.modules.oa.utils;
 
 import com.thinkgem.jeesite.common.utils.SpringContextHolder;
+import com.thinkgem.jeesite.modules.oa.constant.WorkType;
 import com.thinkgem.jeesite.modules.oa.entity.*;
 import com.thinkgem.jeesite.modules.oa.service.OaWorkLogService;
-import com.thinkgem.jeesite.modules.sys.dao.OfficeDao;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
@@ -79,7 +78,7 @@ public class WorkLogUtils {
             OaWorkTaskLog oaWorkTaskLog = new OaWorkTaskLog();
             oaWorkTaskLog.setType(WorkType.FEEDBACK);
             oaWorkTaskLog.setOaTaskId(oaFeedback.getId());
-            oaWorkTaskLog.setContent(isNew ? "提交售后反馈:" + oaFeedback.getContent() : "修改售后反馈:" + oaFeedback.getContent());
+            oaWorkTaskLog.setContent(isNew ? "提交售后反馈" : "修改售后反馈" );
             oaWorkTaskLog.setOpFromUid(user.getId());
             oaWorkTaskLog.setOpTime(new Date());
             oaWorkTaskLog.setName(oaFeedback.getContent());
