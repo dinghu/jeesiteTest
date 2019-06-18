@@ -6,6 +6,7 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.utils.UuidUtls;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.core.Result;
+import com.thinkgem.jeesite.modules.oa.constant.WorkType;
 import com.thinkgem.jeesite.modules.oa.entity.OaWorkTask;
 import com.thinkgem.jeesite.modules.oa.entity.OaWorkTaskLog;
 import com.thinkgem.jeesite.modules.oa.service.OaWorkTaskService;
@@ -151,7 +152,9 @@ public class OaWorkTaskController extends BaseController {
         oaWorkTaskLog.setOaTaskId(oaWorkTask.getId());
         oaWorkTaskLog.setOpFromUid(UserUtils.getUserId());
         oaWorkTaskLog.setOpToUid(ownerUid);
+        oaWorkTaskLog.setType(WorkType.WORKTASK);
         oaWorkTaskLog.setOpTime(new Date());
+        oaWorkTaskLog.setName(oaWorkTask.getTitle());
         workTaskService.saveOaWorkTaskLog(oaWorkTaskLog);
 
         System.out.println(note);
@@ -187,6 +190,8 @@ public class OaWorkTaskController extends BaseController {
         oaWorkTaskLog.setOaTaskId(oaWorkTask.getId());
         oaWorkTaskLog.setOpFromUid(UserUtils.getUserId());
         oaWorkTaskLog.setOpTime(new Date());
+        oaWorkTaskLog.setName(oaWorkTask.getTitle());
+        oaWorkTaskLog.setType(WorkType.WORKTASK);
         workTaskService.saveOaWorkTaskLog(oaWorkTaskLog);
     }
 
@@ -217,11 +222,13 @@ public class OaWorkTaskController extends BaseController {
 
             //生成日志记录
             OaWorkTaskLog oaWorkTaskLog = new OaWorkTaskLog();
-            oaWorkTaskLog.setContent("修改了任务");
+            oaWorkTaskLog.setContent("修改任务");
             oaWorkTaskLog.setOaTaskId(oaWorkTask.getId());
             oaWorkTaskLog.setOpFromUid(UserUtils.getUserId());
             oaWorkTaskLog.setOpToUid(UserUtils.getUserId());
             oaWorkTaskLog.setOpTime(new Date());
+            oaWorkTaskLog.setName(oaWorkTask.getTitle());
+            oaWorkTaskLog.setType(WorkType.WORKTASK);
             workTaskService.saveOaWorkTaskLog(oaWorkTaskLog);
             addMessage(redirectAttributes, "修改任务'" + oaWorkTask.getTitle() + "'成功");
         } else {
@@ -235,11 +242,13 @@ public class OaWorkTaskController extends BaseController {
             workTaskService.insertSelective(oaWorkTask);
             //生成日志记录
             OaWorkTaskLog oaWorkTaskLog = new OaWorkTaskLog();
-            oaWorkTaskLog.setContent("创建了任务");
+            oaWorkTaskLog.setContent("创建任务");
             oaWorkTaskLog.setOpFromUid(UserUtils.getUserId());
             oaWorkTaskLog.setOaTaskId(taskId);
+            oaWorkTaskLog.setName(oaWorkTask.getTitle());
             oaWorkTaskLog.setOpToUid(UserUtils.getUserId());
             oaWorkTaskLog.setOpTime(new Date());
+            oaWorkTaskLog.setType(WorkType.WORKTASK);
             workTaskService.saveOaWorkTaskLog(oaWorkTaskLog);
             addMessage(redirectAttributes, "保存任务'" + oaWorkTask.getTitle() + "'成功");
         }

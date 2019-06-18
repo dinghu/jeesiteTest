@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.oa.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.oa.constant.WorkLogUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,6 +71,7 @@ public class OaFeedbackController extends BaseController {
         }
         oaFeedbackService.save(oaFeedback);
         addMessage(redirectAttributes, "保存用户售后反馈成功");
+        WorkLogUtils.saveLog(oaFeedback, true);
         return "redirect:" + Global.getAdminPath() + "/oa/oaFeedback/?repage";
     }
 

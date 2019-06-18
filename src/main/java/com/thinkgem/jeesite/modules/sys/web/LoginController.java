@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.oa.constant.WorkLogUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.web.util.WebUtils;
@@ -123,6 +124,8 @@ public class LoginController extends BaseController {
         if (mobile) {
             return renderString(response, model);
         }
+
+        WorkLogUtils.saveLoginLog();
 
         return "modules/sys/sysLogin";
     }

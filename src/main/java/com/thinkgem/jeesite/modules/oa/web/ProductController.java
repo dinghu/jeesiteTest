@@ -7,9 +7,11 @@ import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.modules.oa.constant.WorkLogUtils;
 import com.thinkgem.jeesite.modules.oa.entity.Product;
 import com.thinkgem.jeesite.modules.oa.service.ProductService;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
+import com.thinkgem.jeesite.utils.ExcelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,12 +79,14 @@ public class ProductController extends BaseController {
         if (productDb != null) {
             productDb.setUpdateTime(new Date());
             productService.updateByPrimaryKeySelective(product);
+            WorkLogUtils.saveLog(product,false);
             addMessage(redirectAttributes, "商品信息已更新！");
         } else {
             product.setUpdateTime(new Date());
             product.setCreateTime(product.getUpdateTime());
             product.setCreateUid(UserUtils.getUserId());
             productService.insertSelective(product);
+            WorkLogUtils.saveLog(product,true);
             addMessage(redirectAttributes, "商品信息已保存！");
         }
 

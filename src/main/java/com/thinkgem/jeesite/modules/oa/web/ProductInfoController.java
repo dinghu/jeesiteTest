@@ -7,6 +7,7 @@ import com.thinkgem.jeesite.common.utils.DateUtils;
 import com.thinkgem.jeesite.common.utils.excel.ExportExcel;
 import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.modules.oa.constant.WorkLogUtils;
 import com.thinkgem.jeesite.modules.oa.entity.ProductInfo;
 import com.thinkgem.jeesite.modules.oa.service.ProductInfoService;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
@@ -78,12 +79,14 @@ public class ProductInfoController extends BaseController {
             productInfoDb.setUpdateTime(new Date());
             productInfoService.updateByPrimaryKeySelective(productInfo);
             addMessage(redirectAttributes, "商品信息已更新！");
+            WorkLogUtils.saveLog(productInfo, false);
         } else {
             productInfo.setUpdateTime(new Date());
             productInfo.setCreateTime(productInfo.getUpdateTime());
             productInfo.setCreateUid(UserUtils.getUserId());
             productInfoService.insertSelective(productInfo);
             addMessage(redirectAttributes, "商品信息已保存！");
+            WorkLogUtils.saveLog(productInfo, true);
         }
 
         return "redirect:" + adminPath + "/oa/productInfo/list?repage";
@@ -92,14 +95,13 @@ public class ProductInfoController extends BaseController {
     /**
      * 导出数据
      *
-     *
      * @param request
      * @param response
      * @param redirectAttributes
      * @return
      */
     @RequestMapping(value = "export", method = RequestMethod.POST)
-    public String exportFile( HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+    public String exportFile(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         try {
             String fileName = "产品信息表" + DateUtils.getDate("yyyyMMddHHmmss") + ".xlsx";
             new ExportExcel("产品信息表", ProductInfo.class).setDataList(productInfoService.getAll(

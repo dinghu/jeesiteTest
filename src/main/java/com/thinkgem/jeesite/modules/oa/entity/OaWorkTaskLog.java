@@ -18,6 +18,8 @@ public class OaWorkTaskLog implements Serializable {
 
     private String content;
 
+    private String name;
+
     private String mark;
 
     private Date opTime;
@@ -25,6 +27,14 @@ public class OaWorkTaskLog implements Serializable {
     private User fromUser;
 
     private User toUser;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getMark() {
         return mark;

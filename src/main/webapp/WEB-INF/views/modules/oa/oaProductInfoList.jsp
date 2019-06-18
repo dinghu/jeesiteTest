@@ -81,7 +81,7 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>序号</th>
+        <%--<th>序号</th>--%>
         <th>提交人</th>
         <th>提交时间</th>
         <th>SKU</th>
@@ -113,9 +113,9 @@
     <tbody>
     <c:forEach items="${page.list}" var="productInfo">
         <tr>
-            <td>
-                <span class="wrap" title="${productInfo.id}">${productInfo.id}</span>
-            </td>
+            <%--<td>--%>
+                <%--<span class="wrap" title="${productInfo.id}">${productInfo.id}</span>--%>
+            <%--</td>--%>
             <td>
 
                 <span class="wrap"
