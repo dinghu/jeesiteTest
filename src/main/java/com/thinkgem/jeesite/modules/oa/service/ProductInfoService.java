@@ -17,6 +17,10 @@ public class ProductInfoService extends IntegerKeyBaseService<ProductInfoDao, Pr
         return dao.findByPageAndKeywords(keywords, pageQuery);
     }
 
+    public ProductInfo selectBySku(String sku) {
+        return dao.selectBySku(sku);
+    }
+
     public int countProductInfoNum(String keywords) {
         return dao.getTotalCountByKeywords(keywords);
     }

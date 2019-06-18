@@ -346,4 +346,16 @@
             order by ${pageQuery.orderBy} ${pageQuery.orderType} limit #{pageQuery.start} , #{pageQuery.pageSize}
         </if>
     </select>
+
+    <select id="selectBySku" resultMap="BaseResultMap">
+        select * from shop_product where sku = #{sku}
+    </select>
+
+    <select id="findByPage" resultMap="BaseResultMap">
+        select * from shop_product
+        <include refid="FilterMapper.parseFilterRules"/>
+        <if test="pageQuery != null">
+            order by ${pageQuery.orderBy} ${pageQuery.orderType} limit #{pageQuery.start} , #{pageQuery.pageSize}
+        </if>
+    </select>
 </mapper>

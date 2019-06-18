@@ -7,9 +7,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#btnExport").click(function () {
-                top.$.jBox.confirm("确认要导出用户数据吗？", "系统提示", function (v, h, f) {
+                top.$.jBox.confirm("确认要导出产品信息数据吗？", "系统提示", function (v, h, f) {
                     if (v == "ok") {
-                        $("#searchForm").attr("action", "${ctx}/sys/user/export");
+                        $("#searchForm").attr("action", "${ctx}/oa/product/export");
                         $("#searchForm").submit();
                     }
                 }, {buttonsFocus: 1});
@@ -17,7 +17,7 @@
             });
             $("#btnImport").click(function () {
                 $.jBox($("#importBox").html(), {
-                    title: "导入数据", buttons: {"关闭": true},
+                    title: "导入产品信息数据", buttons: {"关闭": true},
                     bottomText: "导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！"
                 });
             });
@@ -47,6 +47,16 @@
     </style>
 </head>
 <body>
+
+<div id="importBox" class="hide">
+    <form id="importForm" action="${ctx}/oa/product/import" method="post" enctype="multipart/form-data"
+          class="form-search" style="padding-left:20px;text-align:center;" onsubmit="loading('正在导入，请稍等...');"><br/>
+        <input id="uploadFile" name="file" type="file" style="width:330px"/><br/><br/>　　
+        <input id="btnImportSubmit" class="btn btn-primary" type="submit" value="   导    入   "/>
+        <%--<a href="${ctx}/oa/productInfo/import/template">下载模板</a>--%>
+    </form>
+</div>
+
 <ul class="nav nav-tabs">
     <li class="active"><a href="${ctx}/oa/product/list">产品价格表</a></li>
     <li><a href="${ctx}/oa/product/form">添加产品价格信息</a></li>

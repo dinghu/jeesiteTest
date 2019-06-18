@@ -4,7 +4,8 @@
     <resultMap id="BaseResultMap" type="com.thinkgem.jeesite.modules.oa.entity.ProductInfo">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="pid" property="pid" jdbcType="INTEGER"/>
-        <result column="create_uid" property="createUid" jdbcType="CHAR"/>
+        <!--<result column="create_uid" property="createUid" jdbcType="CHAR"/>-->
+
         <result column="sku" property="sku" jdbcType="CHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="keywords" property="keywords" jdbcType="VARCHAR"/>
@@ -27,6 +28,10 @@
         <result column="others" property="others" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+
+        <association property="createUser" select="com.thinkgem.jeesite.modules.sys.dao.UserDao.get"
+                     column="create_uid">
+        </association>
     </resultMap>
     <sql id="Base_Column_List">
     id, pid, create_uid, sku, name, keywords, images, color, yangpin, isSameToYangpin, 
@@ -34,6 +39,11 @@
     sale_groupway, strengths_weaknesses, kandeng_advises, function_params, parts, link, 
     note, image_production_requirements, others, create_time, update_time
   </sql>
+
+    <!--<sql id="oaProductInfoJoins">-->
+		<!--LEFT JOIN sys_user u ON u.id = u.create_uid-->
+	<!--</sql>-->
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -352,4 +362,17 @@
         select count(*) from shop_product_info
         <include refid="FilterMapper.parseFilterRules"/>
     </select>
+
+    <select id="selectBySku" resultMap="BaseResultMap">
+        select * from shop_product_info where sku = #{sku}
+    </select>
+
+    <select id="findByPage" resultMap="BaseResultMap">
+        select * from shop_product_info
+        <include refid="FilterMapper.parseFilterRules"/>
+        <if test="pageQuery != null">
+            order by ${pageQuery.orderBy} ${pageQuery.orderType} limit #{pageQuery.start} , #{pageQuery.pageSize}
+        </if>
+    </select>
+
 </mapper>

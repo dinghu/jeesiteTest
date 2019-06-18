@@ -13,4 +13,6 @@ public interface ProductInfoDao extends IntegerBaseDao<ProductInfo> {
     List<ProductInfo> findByPageAndKeywords(@Param("keywords") String keywords, @Param("pageQuery") PageQuery pageQuery);
 
     int getTotalCountByKeywords(@Param("keywords") String keywords);
+
+    ProductInfo selectBySku(@Param("sku")String sku);
 }

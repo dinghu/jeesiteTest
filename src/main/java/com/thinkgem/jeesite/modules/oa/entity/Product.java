@@ -1,5 +1,7 @@
 package com.thinkgem.jeesite.modules.oa.entity;
 
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,45 +9,54 @@ public class Product implements Serializable {
     private Integer id;
 
     private String createUid;
-
+    @ExcelField(title = "SKU", align = 2, sort = 1)
     private String sku;
-
+    @ExcelField(title = "品名", align = 2, sort = 2)
     private String name;
-
+    @ExcelField(title = "装箱体积（m³）", align = 2, sort = 3)
     private Integer packingVolume;
 
     private Integer packingAmout;
 
+    @ExcelField(title = "毛重（g）", align = 2, sort = 4)
     private Double grossWeight;
-
+    @ExcelField(title = "单个包装尺寸（cm）", align = 2, sort = 5)
     private Integer singlePackingSize;
-
+    @ExcelField(title = "单价", align = 2, sort = 6)
     private Double price;
 
+    @ExcelField(title = "国内运费", align = 2, sort = 7)
     private Double domesticReight;
 
+    @ExcelField(title = "包装费", align = 2, sort = 8)
     private Double packingPrice;
 
+    @ExcelField(title = "国际运费", align = 2, sort = 9)
     private Double internationalShipping;
-
+    @ExcelField(title = "关税税率", align = 2, sort = 10)
     private Double rate;
 
     private String hsCode;
 
     private String tariff;
 
+    @ExcelField(title = "当地运费", align = 2, sort = 11)
     private Double localFreight;
 
+    @ExcelField(title = "Ebay成本", align = 2, sort = 12)
     private Double ebayCost;
 
+    @ExcelField(title = "OH 20%毛利价格", align = 2, sort = 13)
     private Double ebay20pPrice;
 
     private Double amazonCost;
 
     private Double amazon20pPrice;
 
+    @ExcelField(title = "实际定价", align = 2, sort = 14)
     private Double advicePrice;
 
+    @ExcelField(title = "拟调价", align = 2, sort = 15)
     private Double nitiaojia;
 
     private String manufacturerLink;

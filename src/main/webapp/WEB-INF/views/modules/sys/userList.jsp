@@ -68,8 +68,8 @@
                                                             class="input-medium"/></li>
         <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"
                                 onclick="return page();"/>
-            <input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
-            <input id="btnImport" class="btn btn-primary" type="button" value="导入"/></li>
+            <%--<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>--%>
+            <%--<input id="btnImport" class="btn btn-primary" type="button" value="导入"/></li>--%>
         <li class="clearfix"></li>
     </ul>
 </form:form>

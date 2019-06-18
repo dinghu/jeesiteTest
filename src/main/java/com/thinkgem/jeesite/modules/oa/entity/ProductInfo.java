@@ -1,5 +1,8 @@
 package com.thinkgem.jeesite.modules.oa.entity;
 
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
+import com.thinkgem.jeesite.modules.sys.entity.User;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,47 +13,56 @@ public class ProductInfo implements Serializable {
 
     private String createUid;
 
+    @ExcelField(title = "提交人", align = 2, sort = 1, value = "createUser.name")
+    private User createUser;
+    @ExcelField(title = "提交时间", align = 2, sort = 3, value = "")
+    private Date createTime;
+    @ExcelField(title = "SKU", align = 2, sort = 2)
     private String sku;
-
+    @ExcelField(title = "品名", align = 2, sort = 4)
     private String name;
-
+    @ExcelField(title = "关键词", align = 2, sort = 5)
     private String keywords;
 
     private String images;
-
+    @ExcelField(title = "颜色", align = 2, sort = 6)
     private String color;
 
+    @ExcelField(title = "样品", align = 2, sort = 7, value = "")
     private Integer yangpin;
 
+    @ExcelField(title = "样品和大货是否一致", align = 2, sort = 8, value = "")
     private String issametoyangpin;
 
+    @ExcelField(title = "厂家包装要求", align = 2, sort = 9, value = "")
     private String packingRequirements;
 
+    @ExcelField(title = "仓库包装要求", align = 2, sort = 10, value = "")
     private String warehousePackagingRequirements;
-
+    @ExcelField(title = "验货注意事项", align = 2, sort = 11, value = "")
     private String checkPoints;
-
+    @ExcelField(title = "单个包装方式", align = 2, sort = 12, value = "")
     private String singlePackingway;
-
+    @ExcelField(title = "销售组合方式", align = 2, sort = 13, value = "")
     private String saleGroupway;
 
+    @ExcelField(title = "产品特点及优缺点", align = 2, sort = 14, value = "")
     private String strengthsWeaknesses;
 
+    @ExcelField(title = "产品刊登建议", align = 2, sort = 15, value = "")
     private String kandengAdvises;
-
+    @ExcelField(title = "产品功能及参数", align = 2, sort = 16, value = "")
     private String functionParams;
-
+    @ExcelField(title = "产品配件", align = 2, sort = 17, value = "")
     private String parts;
-
+    @ExcelField(title = "产品主链接", align = 2, sort = 18, value = "")
     private String link;
-
+    @ExcelField(title = "备注", align = 2, sort = 19, value = "")
     private String note;
-
+    @ExcelField(title = "图片制作要求", align = 20, sort = 3, value = "")
     private String imageProductionRequirements;
-
+    @ExcelField(title = "产品功能及参数", align = 21, sort = 3, value = "")
     private String others;
-
-    private Date createTime;
 
     private Date updateTime;
 
@@ -70,6 +82,14 @@ public class ProductInfo implements Serializable {
 
     public void setPid(Integer pid) {
         this.pid = pid;
+    }
+
+    public User getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(User createUser) {
+        this.createUser = createUser;
     }
 
     public String getCreateUid() {
