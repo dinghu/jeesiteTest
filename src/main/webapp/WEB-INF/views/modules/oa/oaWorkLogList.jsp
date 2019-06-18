@@ -42,6 +42,26 @@
             width: 15%;
         }
 
+        .oaLogTitlecls > a:link {
+            color: #2fa4e7;
+            text-decoration: none;
+        }
+
+        .oaLogTitlecls > a:visited {
+            color: #551A8B;
+            text-decoration: none;
+        }
+
+        .oaLogTitlecls > a:hover {
+            color: #ff0000;
+            text-decoration: none;
+        }
+
+        .oaLogTitlecls > a:active {
+            color: #2fa4e7;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <body>
@@ -74,7 +94,7 @@
                     ${oaWorkLog.content}
             </td>
 
-            <td class="name">
+            <td class="name oaLogTitlecls">
                     <%--public static final int WORKTASK = 1;--%>
                     <%--public static final int PRODUCTINFO = 2;--%>
                     <%--public static final int PRODUCTPRICE = 3;--%>
@@ -94,7 +114,7 @@
                     </c:when>
 
                     <c:when test="${oaWorkLog.type == 5}">
-                        <a href="${ctx}/oa/oaFeedBack/detail?id=${oaWorkLog.oaTaskId}">${fns:abbr(oaWorkLog.name,50)}</a>
+                        <a href="${ctx}/oa/oaFeedback/detail?id=${oaWorkLog.oaTaskId}">${fns:abbr(oaWorkLog.name,50)}</a>
                     </c:when>
 
                 </c:choose>
