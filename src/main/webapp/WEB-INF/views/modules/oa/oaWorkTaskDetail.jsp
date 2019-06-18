@@ -56,7 +56,7 @@
         </h3>
         <div>${oaWorkTask.content}</div>
         <div style="border-top:1px solid #ddd;margin-top:25px; margin-bottom: 25px;padding-top: 15px">
-           $ 发布者：{oaWorkTask.createUser.name} &nbsp;
+            发布者：${oaWorkTask.createUser.name} &nbsp;
             发布时间：<fmt:formatDate value="${oaWorkTask.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/> &nbsp;
             更新时间：<fmt:formatDate value="${oaWorkTask.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
 
@@ -74,8 +74,8 @@
         </c:if>
 
         <%--<c:if test="${!fns:endsWith(oaWorkTask.files,'jpg' )}">--%>
-            <%--&lt;%&ndash;<form:hidden id="files" path="${oaWorkTask.files}" htmlEscape="false" maxlength="255" class="input-xlarge"/>&ndash;%&gt;--%>
-            <%--<a href="${oaWorkTask.files}">${fns:jsGetFileNameFromUrl(oaWorkTask.files)}</a>--%>
+        <%--&lt;%&ndash;<form:hidden id="files" path="${oaWorkTask.files}" htmlEscape="false" maxlength="255" class="input-xlarge"/>&ndash;%&gt;--%>
+        <%--<a href="${oaWorkTask.files}">${fns:jsGetFileNameFromUrl(oaWorkTask.files)}</a>--%>
         <%--</c:if>--%>
     </div>
 </div>
